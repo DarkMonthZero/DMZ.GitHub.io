@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="但行己路，莫问他人">
 <meta property="og:description" content="java复习与查缺补漏">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-02T12:20:24.431Z">
+<meta property="og:updated_time" content="2019-07-23T08:26:12.855Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java复习与查缺补漏">
 <meta name="twitter:description" content="java复习与查缺补漏">
@@ -336,9 +336,17 @@
 </li>
 <li><p>for循环中的声明语句会执行一次，而条件与动作会执行多次</p>
 </li>
+<li><p>遇到编译时错误提示参数异常，看API没找到参数哪里异常了，最后发现是倒错包了。</p>
+</li>
+<li><p>从一个项目复制文件到另一个项目可能会导致文件乱码，这是因为两个项目的编码不一样。</p>
+</li>
+<li><p>当一个类创建的时候，会递归调用父类的构造方法。</p>
+</li>
+<li><p>当创建一个对象序列化输出流且不使用时，会有java.io.EOFException异常。</p>
+</li>
 </ul>
 <h3 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h3><ul>
-<li>使用try..catch..finally来捕获异常，使用throw可以在方法体里抛出异常，在声明方法时通过添加throws关键词可以在调用这个方法时必须try..catch或者继续往上抛。可以通过继承Execption类来创建自定义异常类。可以通过printStackTrace来打印异常信息。</li>
+<li>使用try..catch..finally来捕获异常，使用throw可以在方法体里抛出异常，在声明方法时通过添加throws关键词可以在调用这个方法时必须try..catch或者继续往上抛。可以通过继承Execption类来创建自定义异常类。可以通过printStackTrace来打印异常信息。当运行到抛出异常的代码时，后边的代码就不会再执行。</li>
 </ul>
 <h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><ul>
 <li>Java中的字符串具有不变形，每次试图改变字符串时都是创建了一个新的字符串对象。如果要频繁修改字符串，应使用StringBuilder类。</li>
@@ -414,7 +422,7 @@
 </li>
 </ol>
 </li>
-<li><p>八进制开头用0表示，十六进制开头用0x表示</p>
+<li><p>Java中八进制开头用0表示，十六进制开头用0x表示</p>
 </li>
 <li><p>二进制的位运算：</p>
 <ol>
@@ -488,10 +496,238 @@
 <li>Java中的进制转换方法都是在integer这个类里边，十进制转其他进制使用toXXXX方法。其他进制转十进制使用parseInt方法。</li>
 </ul>
 </li>
-<li><p>java中的进制转换</p>
+<li><p>java中的进制</p>
+<ol>
+<li><p>在开发中，二进制主要用于跨平台，如：文件读写，数据通信。</p>
+</li>
+<li><p>Java中的数据类型：1个字节是8bit，byte(8bit, -128-127)、short(16bit)、int(32bit)、long(64bit)、单精度(32bit,float)、双精度(64bit,double)、boolean(8bit)、char（Unicode，16bit）</p>
+</li>
+<li><p>例如：int i = 8143转换成字节数组。8143的二进制位 00000000 00000000 00011111 1100111。 取得第一个低端字节：8143 &gt;&gt; 0<em>8 &amp; 0xff(11111111,前边补0) = 1100111。把8143右移 0</em>8 位，然后按位与0xff，也就是（00000000 00000000 00000000 11111111）取得最后第一个低端位的二进制数 1100111，转换为十进制就是207或者有符号-49。第二个低端字节：8143 &gt;&gt; 1*8 &amp; 0xff。8143右移8位之后舍弃左边8位，右边补0，然后按位与0xff就得到了00011111。第三、第四一样。</p>
+</li>
+<li><p>小端法（little-endian）与大端法（big-endian）</p>
+<ul>
+<li><p>小端法既是将低位字节排放在内存的低地址段即该值得起始端。</p>
+</li>
+<li><p>大端法既是将高位字节排放在内存的低地址段即该值的起始端。</p>
 </li>
 </ul>
+</li>
+<li><p>字符串与字节数组的转换</p>
+<ul>
+<li><p>字符串转字节数组：只需要通过String类的getBytes方法实现。</p>
+</li>
+<li><p>字节数组转字符串：只需通过String类的构造方法即可，即new一个String类把字节数组当做参数即可。还可以制定编码格式。</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="io流"><a href="#io流" class="headerlink" title="io流"></a>io流</h3><ul>
+<li><p>编码</p>
+<ul>
+<li>gbk编码中文占用2个字节，英文占用1个，utf-8中文占用3个，英文占用2个，utf-16be中文和英文都是两个字节。当字节序列是某种编码时，解析这个字节序列也必须是这种编码。</li>
+</ul>
+</li>
+<li><p>File常用API</p>
+<ol>
+<li>File类只用于表示文件的信息，不能用于访问文件。</li>
+<li><p>常用方法：</p>
+<p> exists（）  判断调用这个方法的对象存不存在</p>
+<p> mkdir（）   创建文件夹。</p>
+<p> mkdirs（）  创建多个文件夹</p>
+<p> separator  静态属性，设置分割符</p>
+<p> isDirectory（）  判断是否是目录。不是目录或目录不存在返回false</p>
+<p> ifFile（）  是否是一个文件。</p>
+<p> getParent（） 获得父目录。</p>
+<p> list（）  用于列出当前目录下的子目录和文件，不包含子目录下的文件。</p>
+</li>
+</ol>
+</li>
+<li><p>RandomAccessFile类</p>
+<p>   RandomAccessFile类是java提供的读写文件的类，它还支持随机读写文件。在硬盘上文件是byte储存的，是数据的集合。在调用RandomAccessFile类的构造方法时，除了要给File类，还有指定打开方式，包括”rw”(读写)以及”r”(只读)。在打开文件时，文件指针在开头，point = 0。RandomAccessFile类提供了读和写的方法，分别是write()以及read()，需要注意的是读写方法都是只读写一个字节。文件读写完成以后一定要关闭。raf在读取文件之前一定要把文件指针用seek方法设置到0</p>
+</li>
+<li><p>字节流与字符流</p>
+<ol>
+<li><p>字节流</p>
+<p>InputStream是输入流，用来读取文件的内容。OutputStream是输出流，用来往文件写内容。这两个类是所有字节输入输出流的父类。</p>
+<p>InputStream的读方法：</p>
+<p>read()  返回一个读取到的字节(byte)</p>
+<p>read(byte[] b)  把读取到的字节直接填充到字节数组里</p>
+<p>read(byte[] b，int start,int size)  把读取到的字节从数组的start位置开始放size个    </p>
+</li>
+</ol>
+<ul>
+<li>FileInputStream<br>fileInputStream继承自InputStream。主要实现了对文件的读操作。</li>
+</ul>
+</li>
+</ul>
+<pre><code>read()方法返回的是读取到的有效字节的数量。
 
+
+`
+
+    FileInputStream in = new FileInputStrea(fileName);
+    byte[] buf = new byte[10];
+    int bytes = 0;
+    while((bytes = in.read(buf,0,buf.length)) != -1){
+       for(int j = 0; j &lt; bytes; j++){
+          System.out.print(Integer.toHexString(buf[j] &amp; 0xff) + &quot; &quot;);
+          if (i++%10==0){
+                System.out.println();
+            }
+        }
+    }
+
+`
+
+OutputStream的写方法：
+
+write(int b) 把b的低八位写入到流
+
+write(byte[] bt)  把字节数组bt写入到流
+
+write(byte[] be, int start, int size)  把字节数组be从start开始写size个到流
+
++ FileOutputStream
+
+    实现了对文件的写操作。当创建FileOutputStream的对象时，如果文件不存在则创建，存在则删除掉重新创建。如果不想重新创建，则需要把append设为true。当调用write方法时只写入低八位。
+
+    使用FileOutputStream与FileInputStream实现复制文件：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static void copyFile(File srcFile, File destFile)throws IOException&#123;</span><br><span class="line">       if (!srcFile.exists())&#123;</span><br><span class="line">           throw new IllegalArgumentException(srcFile + &quot;不存在&quot;);</span><br><span class="line">       &#125;</span><br><span class="line">       if (!srcFile.isFile())&#123;</span><br><span class="line">           throw new IllegalArgumentException(srcFile + &quot;不是一个有效文件&quot;);</span><br><span class="line">       &#125;</span><br><span class="line">       FileInputStream in = new FileInputStream(srcFile);</span><br><span class="line">       FileOutputStream out = new FileOutputStream(destFile);</span><br><span class="line">       byte[] buf = new byte[20 * 1024];</span><br><span class="line">       int i;</span><br><span class="line">       while ((i = in.read(buf,0,buf.length)) != -1)&#123;</span><br><span class="line">           out.write(buf,0,i);</span><br><span class="line">           out.flush();</span><br><span class="line">       &#125;</span><br><span class="line">       in.close();</span><br><span class="line">       out.close();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p> 读写方法中每次读取或写入一个数组的方法读取或写入速度最快。</p>
+<ul>
+<li><p>DateInputStream与DateOutputStream</p>
+<p>  dis与dos是对普通流的一个扩展，用于方便的读写数据。使用了装饰模式，调用dis与dos的构造方法时需要对应的输入输出流。dis&amp;dos相比原本的输入输出流可以直接写入或读取基本数据类型。不需要自己在手写实现。</p>
+</li>
+<li><p>BufferedInputStream&amp;BufferedOutputStream</p>
+<p>  bis&amp;bos 相比于原本的io流与数据io流提供了带缓冲区的io流，原本的io流当调用写入或读取方法时，直接操作内存，而带缓冲区的io流则会吧数据存入缓冲区，当缓冲区满或者调用flush()时在写入内存。所以当写入数据较少时如果不调用flush()方法就不会写入。<br>  代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> BufferedInputStream bis = new BufferedInputStream(new FileInputStream(srcFile));</span><br><span class="line">BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(destFile,true));</span><br><span class="line">int i = 0;</span><br><span class="line">while((i = bis.read()) != -1)&#123;</span><br><span class="line">    bos.write(i);</span><br><span class="line">    bos.flush();</span><br><span class="line">&#125;</span><br><span class="line">bis.close();</span><br><span class="line">bos.close();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>缓冲读取相对于批量读取减少了操作内存的次数。可以用System类的currentTimeMills方法来获取当前毫秒数，在方法开始前获取一次，方法结束后在获取一次，获取后的减去获取前的就是方法运行所需的毫秒数。</p>
+<ol start="2">
+<li><p>字符流</p>
+<p> java的文本(char) 是16位无符号整数，是字符的unicode编码。4</p>
+<p> 文件是byte byte byte的数据序列。</p>
+<p> 文本文件是文本(char)按照某种编码序列化位byte储存的文件。</p>
+<p> Java种带radeer与writer的都是字符流，反之就是字节流。</p>
+<p> 字符流一次处理一个字符(char),底层仍然是字节流。</p>
+<p> 字符流的基本实现：</p>
+<pre><code>InputStreamRader与OutputStreamWriter其中Input完成byte解析为char，output完成char解析为byte。当调用InputStreamReader的构造方法时可以指定编码格式。
+</code></pre><p> 应用InputStreamRader读取文件内容并打印到控制台：</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> InputStreamReader isr = new InputStreamReader(new FileInputStream(new File(</span><br><span class="line">        &quot;E:\\java\\imooc\\Day01\\imooc.iml&quot;)));</span><br><span class="line">int i = 0;</span><br><span class="line">char[] buf = new char[8 * 1024];</span><br><span class="line">while((i = isr.read(buf,0,buf.length)) != -1)&#123;</span><br><span class="line">    System.out.println(new String(buf,0,i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>FileReade与FileWrited</p>
+<p>  fr与fw是针对文件的字符流读写类，但是要注意的是在创建这两个类的对象时不能指定编码格式，默认使用项目的编码。所有有时候会导致乱码问题。</p>
+</li>
+<li><p>字符流过滤器</p>
+<p>  bufferReader与BufferWrite是对InputStreamRader与OutputStreamWriter的增强。过滤器相对于原来的字符流提供了缓冲区，需要注意的是读的时候并不能识别换行，在写文件的时候需要调用newLine方法来换行。</p>
+</li>
+<li><p>PrintWriter</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line"> BufferedReader br = new BufferedReader(new FileReader(&quot;E:\\java\\imooc\\Day01\\imooc.iml&quot;));</span><br><span class="line"></span><br><span class="line">PrintWriter pw = new PrintWriter(&quot;demo/imooc.txt&quot;);</span><br><span class="line">String line;</span><br><span class="line">while((line = br.readLine()) != null)&#123;</span><br><span class="line">    System.out.println(line);</span><br><span class="line">    pw.println(line);</span><br><span class="line">    pw.flush();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">br.close();</span><br><span class="line">pw.close();</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>对象序列化</p>
+<p>  对象序列化就是把一个Object转换成byte序列储存，反之就叫做反序列化。Java中实现序列化的io流是ObjectOutputStream与ObjectInputStream类它们是字节的过滤流，一个对象要进行序列化，必须要实现序列化接口。对象序列化就是把对象储存起来。 对象序列化的代码实现：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line"> File f = new File(&quot;demo/student.txt&quot;);</span><br><span class="line">ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(f));</span><br><span class="line"> Student sd = new Student(1,&quot;a&quot;,18);</span><br><span class="line"> oos.writeObject(sd);</span><br><span class="line"> oos.close();</span><br><span class="line"> ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));</span><br><span class="line"> Object o = ois.readObject();</span><br><span class="line"> if (o instanceof Student)&#123;</span><br><span class="line">     Student stu = (Student) o;</span><br><span class="line">     System.out.println(stu);</span><br><span class="line"> &#125;</span><br><span class="line"> ois.close();</span><br></pre></td></tr></table></figure>
+<p>在对象序列化时用transient修饰的属性不会进行jvm默认的序列化，但是可以自己完成属性的序列化,transient一般用来提高序列化性能。代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">private transient int stuAge;</span><br><span class="line">private void writeObject(java.io.ObjectOutputStream s)throws java.io.IOException&#123;</span><br><span class="line">      s.defaultWriteObject();</span><br><span class="line">      s.writeInt(stuAge);</span><br><span class="line">   &#125;</span><br><span class="line">   private void readObject(java.io.ObjectInputStream s)</span><br><span class="line">          throws java.io.IOException, ClassNotFoundException &#123;</span><br><span class="line">      s.defaultReadObject();</span><br><span class="line">      stuAge = s.readInt();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>需要注意的是自定义对象序列化的读写时，先写哪个就会先读哪个。</p>
+<ul>
+<li><p>序列化中子类父类构造方法</p>
+<p>  当一个类实现了序列化接口，它的子类都可以实现序列化，当一个子类进行序列化时，会递归调用父类的构造方法，当一个子类被反序列化时，会递归调用父类没有实现序列化接口的构造方法。原因是如果父类实现了序列化接口，在序列化时会把父类的构造方法也序列化，反之则会在反序列化时调用父类的构造方法。</p>
+</li>
+</ul>
+<ol>
+<li><p>Java中的XML</p>
+<p> xml文件常用来数据存储于传输。xml文件的存储是以树形结构存储的，每个节点可以有属性，节点名称区分大小写。xml文件要在文件首句声明，声明形式为：</p>
+<p> &lt;?xml version=”1.0” encoding=”utf-8”?&gt;</p>
+</li>
+</ol>
+<ul>
+<li><p>为什么要使用XML<br>  xml应用于不同应用、软件、平台之间的通信</p>
+</li>
+<li><p>Java中读取解析xml文件</p>
+<p>  Java中可以使用DOM、SAX、DOM4J、JDOM解析4中方法，前两种是Java官方提供的方式，DOM4J及JDOM需要额外的下载Jar包并添加到项目中。</p>
+</li>
+</ul>
+<ul>
+<li><p>常用的节点类型</p>
+<p>  节点类型   nodeName返回值  nodeValue返回值</p>
+<p>  Element   ElementName       null</p>
+<p>  Attr      属性名称         属性值</p>
+<p>  Text      #text          节点内容</p>
+<pre><code>NodeType        NamedConstant
+</code></pre><p>  Element   1                ELEMENT_NODE</p>
+<p>  attr      2                ATTR_NODE</p>
+<p>  Text      3                TEXT_NODE</p>
+</li>
+<li><p>DOM方式解析XML文件</p>
+</li>
+</ul>
+<p>首先取得xml文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//通过DocumentBuilderFactory的静态方法创建一个DocumentBuilderFactory对象</span><br><span class="line">   DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();</span><br><span class="line">   //通过DocumentBuilderFactory对象创建一个DocumentBuilder对象</span><br><span class="line">   DocumentBuilder db = dbf.newDocumentBuilder();</span><br><span class="line">   //通过DocumentBuilder对象解析xml文件</span><br><span class="line">   Document d = db.parse(&quot;demo/books.xml&quot;);</span><br></pre></td></tr></table></figure>
+<p>以book节点为例，取得book节点的所有属性并遍历：</p>
+<p>  在不知道节点的属性个数及名字的情况下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//通过标签名字获取标签集合</span><br><span class="line">   NodeList books = d.getElementsByTagName(&quot;book&quot;);</span><br><span class="line">      //遍历标签集合</span><br><span class="line">      for (int i = 0; i &lt; books.getLength(); i++)&#123;</span><br><span class="line">          //获取标签</span><br><span class="line">          Node n = books.item(i);</span><br><span class="line">          //获取标签的所有属性</span><br><span class="line">          NamedNodeMap nnm =  n.getAttributes();</span><br><span class="line">          //遍历标签的属性并输出属性名和属性值</span><br><span class="line">          for(int j = 0; j &lt; nnm.getLength(); j++)&#123;</span><br><span class="line">              System.out.println(&quot;名字&quot; + nnm.item(j).getNodeName() + &quot;属性&quot; + nnm.item(j).getNodeValue() );</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<p>  在知道属性名字的情况下，可以通过属性名字获取属性值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//通过标签名字获取标签集合</span><br><span class="line">   NodeList books = d.getElementsByTagName(&quot;book&quot;);</span><br><span class="line">      //遍历标签集合</span><br><span class="line">      for (int i = 0; i &lt; books.getLength(); i++)&#123;</span><br><span class="line">	  //如果标签集合中的成员不能转换为Element则抛出异常</span><br><span class="line">         if (!(books.item(i) instanceof Element))&#123;</span><br><span class="line">          throw new IllegalArgumentException(&quot;111&quot;);</span><br><span class="line">         &#125;</span><br><span class="line">         //把标签集合中的成员转换为Element</span><br><span class="line">          Element book =(Element) books.item(i);</span><br><span class="line">         //通过Element的getAttribute方法获得属性名为ID的属性值</span><br><span class="line">          String val = book.getAttribute(&quot;name&quot;);</span><br><span class="line">          System.out.println(val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>解析子节点</p>
+<p>  以book节点为例:</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> NodeList books = d.getElementsByTagName(&quot;book&quot;);</span><br><span class="line">    //遍历节点集合</span><br><span class="line">    for (int i = 0; i &lt; books.getLength(); i++)&#123;</span><br><span class="line">         //获取第i个book节点</span><br><span class="line">         Node book = books.item(i);</span><br><span class="line">         //获取book节点的子节点</span><br><span class="line">         NodeList childs = book.getChildNodes();</span><br><span class="line">         //遍历子节点</span><br><span class="line">         for(int k = 0; k &lt; childs.getLength(); k++)&#123;</span><br><span class="line">             //取得第k个子节点</span><br><span class="line">             Node child = childs.item(k);</span><br><span class="line">             //判断子节点是否为Element类型，如果是则输出节点名字与节点文本</span><br><span class="line">             if (child.getNodeType() == Node.ELEMENT_NODE)&#123;</span><br><span class="line">                 //输出节点名字</span><br><span class="line">                 System.out.print(child.getNodeName());</span><br><span class="line">                 //输出节点文本</span><br><span class="line">                 System.out.println(child.getFirstChild().getNodeValue());</span><br><span class="line">             &#125;</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要注意的是直接使用getNodeValue()方法，获取不到文本值，这是因为把book的文本内容当做了一个子节点，所有要在使用getFirstChild()方法获取book的第一个子节点，在获取这个子节点的值。当book方法有多个子节点且第一个子节点也是Element，会获取不到文本值。</p>
+<p>还有另一种方法获取文本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">System.out.println(child.getTextContent());</span><br></pre></td></tr></table></figure>
+<p>这个方法时获取book节点的子节点中的所有文本值。</p>
+<ul>
+<li>这两个方法的区别是前者是获取子节点的value值，后者是获取子节点中的说有文本值。</li>
+</ul>
+<ul>
+<li><p>如何在Java中保留xml的结构</p>
+<p>  可以创建一个类，类的属性与xml的节点属性相对应，然后在解析的时候创建这个类的实例并把解析出来的节点存到类里。</p>
+</li>
+</ul>
+<ul>
+<li><p>SAX解析</p>
+<ul>
+<li>DOM解析与SAX解析的不同，DOM解析会把整个XML文件加载到内存中，然后逐个解析，SAX解析是通过Handler类按顺序逐个解析节点。</li>
+<li><p>SAX解析在碰到开始标签是会调用startElement方法，结束标签会调用endElement方法</p>
+</li>
+<li><p>在创建SAX解析器对象后调用parse()方法发现需要创建一个DefaultHandler的对象，DefaultHandler类中的startElement方法是当解析到开始标签要做什么，而SAXParser的parse方法是解析xml文件的</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>SAX解析获得属性值以及属性名：</p>
+<ul>
+<li><p>当已知标签属性的名字及个数时,可以直接使用getValue方法获得属性的值。</p>
+</li>
+<li><p>当不知道属性名及个数时：</p>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> for (int i = 0; i &lt; attributes.getLength(); i++)&#123;</span><br><span class="line">    //获得属性值</span><br><span class="line">    System.out.println(attributes.getValue(i));</span><br><span class="line">    //获得属性值</span><br><span class="line">    System.out.println(attributes.getQName(i));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>SAX解析获得节点名及节点值：</p>
+<ul>
+<li>每当遇到一个新的开始节点，qName就是当前节点名。而character就是当前的节点值。需要注意的是空格与换行也会被解析为节点，所以空格与换行也会被输出。</li>
+</ul>
+</li>
+</ul>
+<p>不输出空格与换行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">String str = new String(ch,start,length);</span><br><span class="line">if (!(&quot;&quot;.equals(str.trim())))&#123;</span><br><span class="line">    System.out.println(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<pre><code>+ SAX解析中defaultHandler的方法调用顺序，首先是startDocument、startEmelent、characters、endEmelent、endDocument，其中startEmelent获取节点名、节点属性。characters获取节点内容。
+</code></pre>
       
     </div>
     
@@ -660,7 +896,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的问题"><span class="nav-number">1.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常处理"><span class="nav-number">2.</span> <span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间和日期的处理"><span class="nav-number">4.</span> <span class="nav-text">时间和日期的处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Math类的常用方法"><span class="nav-number">5.</span> <span class="nav-text">Math类的常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合"><span class="nav-number">6.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二进制"><span class="nav-number">7.</span> <span class="nav-text">二进制</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的问题"><span class="nav-number">1.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异常处理"><span class="nav-number">2.</span> <span class="nav-text">异常处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间和日期的处理"><span class="nav-number">4.</span> <span class="nav-text">时间和日期的处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Math类的常用方法"><span class="nav-number">5.</span> <span class="nav-text">Math类的常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合"><span class="nav-number">6.</span> <span class="nav-text">集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二进制"><span class="nav-number">7.</span> <span class="nav-text">二进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#io流"><span class="nav-number">8.</span> <span class="nav-text">io流</span></a></li></ol></div>
             
 
           </div>
