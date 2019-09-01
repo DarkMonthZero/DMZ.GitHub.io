@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Oracle数据库是甲骨文公司的一款关系数据库管理系统，本篇博客记录Oracle数据库的相关知识">
+<meta name="keywords" content="冰断秋">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle数据库">
+<meta property="og:url" content="http://yoursite.com/2019/08/17/Oracle数据库/index.html">
+<meta property="og:site_name" content="但行己路，莫问他人">
+<meta property="og:description" content="Oracle数据库是甲骨文公司的一款关系数据库管理系统，本篇博客记录Oracle数据库的相关知识">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-30T03:57:00.895Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle数据库">
+<meta name="twitter:description" content="Oracle数据库是甲骨文公司的一款关系数据库管理系统，本篇博客记录Oracle数据库的相关知识">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/17/Oracle数据库/">
+
+
+
+
+
+  <title>Oracle数据库 | 但行己路，莫问他人</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">但行己路，莫问他人</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/17/Oracle数据库/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冰断秋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="但行己路，莫问他人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Oracle数据库</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-17T16:13:01+08:00">
+                2019-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>Oracle数据库是甲骨文公司的一款关系数据库管理系统，本篇博客记录Oracle数据库的相关知识</strong></p>
+<a id="more"></a>
+<h3 id="Oracle数据库"><a href="#Oracle数据库" class="headerlink" title="Oracle数据库"></a>Oracle数据库</h3><p>Oracle数据库在sql plus中一些命令可以不用分号结尾，sql语句则一定要用分号结尾,Oracle数据库中也可以通过AS设置别名</p>
+<h4 id="Oracle数据库的安装"><a href="#Oracle数据库的安装" class="headerlink" title="Oracle数据库的安装"></a>Oracle数据库的安装</h4><p>  把压缩包解压到同个文件夹下即可，然后以管理员运行目录下的setup.exe</p>
+<h4 id="企业管理器"><a href="#企业管理器" class="headerlink" title="企业管理器"></a>企业管理器</h4><p>  database control 为企业管理器，其中sys账户才有管理员权限</p>
+<h4 id="Oracle数据库的卸载"><a href="#Oracle数据库的卸载" class="headerlink" title="Oracle数据库的卸载"></a>Oracle数据库的卸载</h4><p>  oracle的删除通过dbhome_1下的deinstall文件夹下的deinstall.bat完成</p>
+<hr>
+<h3 id="用户与表空间"><a href="#用户与表空间" class="headerlink" title="用户与表空间"></a>用户与表空间</h3><h4 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h4><p>  用户分为系统用户及自定义用户，而系统用户中sys及system权限较高，其中sys权限高于system，sys必须使用管理员或者系统操作人员才能登陆，system则可以直接登陆。sysman是用于操作企业管理器的账户。以及scott用户，scott用户密码默认是tiger。</p>
+<h5 id="与用户有关的SQL语句"><a href="#与用户有关的SQL语句" class="headerlink" title="与用户有关的SQL语句"></a>与用户有关的SQL语句</h5><p>用户登录登陆语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//用户名以及密码，ip地址或本机服务名  选择管理权限</span><br><span class="line">[username/password] [@server] [as sysdba|sysoper]</span><br></pre></td></tr></table></figure>
+<p>在登陆到数据库时可以使用connect来重新连接：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connect sys/root as sysdba</span><br></pre></td></tr></table></figure>
+<p>查看当前登陆用户：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show user</span><br></pre></td></tr></table></figure>
+<p>使用desc查看数据库的用户表信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DESC dba_users</span><br></pre></td></tr></table></figure>
+<p>使用select语句查看所有用户的用户名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select username from dba_users;</span><br></pre></td></tr></table></figure>
+<p>启用用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 如果要锁定一个用户只需要把unlock替换为lock即可</span><br><span class="line">alter user username account unlock</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="表空间"><a href="#表空间" class="headerlink" title="表空间"></a>表空间</h4><p>表空间是数据库的逻辑存储空间，可以理解为在数据库中开辟了一个空间，用于存放数据库的对象。一个数据库可以有多个表空间构成。表空间是oracle区别于其他关系型数据库的重要概念，且Oracle数据库的优化大部分都是通过表空间实现的。表空间是由一个或多个数据文件构成的，数据文件的位置与大小由用户自定义。用户创建的表或数据库及其他对象都是存放在表空间中的数据文件中。</p>
+<h5 id="表空间的分类"><a href="#表空间的分类" class="headerlink" title="表空间的分类"></a>表空间的分类</h5><p>在Oracle数据库中，表空间分为永久性表空间（永久表空间）、临时表空间、UNDO表空间。默认情况下，账号所拥有的表空间有6个，分别是：</p>
+<p>SYSTEM，用来存放用户的表、试图等数据库对象，它是一个永久表空间。与USERS不同的是SYSTEM常用来存储系统信息</p>
+<p>SYSAUX,用于EXAMPLE表空间的辅助表空间    </p>
+<p>EXAMPLE,用于安装数据库事例的表空间</p>
+<p>UNDOTBS1,用来存储撤销信息，属于UNDO表空间</p>
+<p>TEMP,用于存储SQL语句处理的表以及索引信息的，属于临时表空间</p>
+<p>USERS,存储用户创建的数据库对象，属于永久表空间</p>
+<h6 id="永久表空间"><a href="#永久表空间" class="headerlink" title="永久表空间"></a>永久表空间</h6><p>永久表空间用来存放数据库中需要持久化的对象。例如数据表、试图、存储过程等</p>
+<h6 id="临时表空间"><a href="#临时表空间" class="headerlink" title="临时表空间"></a>临时表空间</h6><p>临时表空间则用来存放数据库操作中中间执行的过程，当执行结束后，存放的内容就会被自动的释放掉，不进行永久的保存</p>
+<h6 id="UNDO表空间"><a href="#UNDO表空间" class="headerlink" title="UNDO表空间"></a>UNDO表空间</h6><p>UNDO表空间是用来保存事务所修改数据的旧值，用来就行数据的回滚。</p>
+<h5 id="与表空间有关的SQL语句"><a href="#与表空间有关的SQL语句" class="headerlink" title="与表空间有关的SQL语句"></a>与表空间有关的SQL语句</h5><p>设置用户的默认表空间或临时表空间,在修改时需要注意username及表空间名字的大小写区别，修改用户的默认表空间或临时表空间需要管理权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER USER username &#123;DEFAULT | TEMPORARY&#125; TABLESPACE tablespace_name</span><br></pre></td></tr></table></figure>
+<p>创建表空间：表空间在创建完成之后，查询该表空间的字段时，where条件后的表空间名字需要大写</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 创建临时表空间或永久表空间</span><br><span class="line">CREATE [TEMPORARY] TABLESPACE </span><br><span class="line">// 表空间名字</span><br><span class="line">tablespace_name </span><br><span class="line">// 创建临时数据文件或永久数据文件，以及数据文件的存储路径与名字以及大小，如果不指定数据文件的存储路径，则会存放到Oracle数据库的安装目录下</span><br><span class="line">&#123;TEMPFILE | DATAFILE&#125; &apos;xx.dbf&apos; SIZE xx</span><br></pre></td></tr></table></figure>
+<p>设置表空间联机或脱机状态：表空间在创建时默认为联机状态，联机状态可以查看数据字典及设置读写状态，而脱机状态则不能使用表空间，临时表空间不能改变其联机状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLESPACE tablespace_name &#123;ONLINE | OFFLINE&#125;</span><br></pre></td></tr></table></figure>
+<p>设置表空间只读或可读写状态：默认情况下表空间的读写状态为可读写，脱机状态下不能修改读写状态，联机状态下默认为可读写状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLESPACE tablespace_name</span><br><span class="line">// 只读 | 可读写</span><br><span class="line">READ ONLY | READ WRITE</span><br></pre></td></tr></table></figure>
+<p>往表空间中增加数据文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLESPACE tablespace_name </span><br><span class="line">ADD DATAFILE &apos;xx.dbf&apos; SIZE xx</span><br></pre></td></tr></table></figure>
+<p>删除数据文件:不能删除表空间中第一个创建的数据文件，如果需要删除第一个数据文件，只能删除整个表空间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLESPACE tablespace_name DROP DATAFILE &apos;filename.dbf&apos;</span><br></pre></td></tr></table></figure>
+<p>删除表空间：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DROP TABLESPACE </span><br><span class="line">// 值删除表空间，不删除数据文件  【删除数据文件】</span><br><span class="line">tablespace_name [INCLUDING CONTENTS]</span><br></pre></td></tr></table></figure>
+<p>查看管理权限用户的表空间：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from dba_tablespaces</span><br></pre></td></tr></table></figure>
+<h3 id="Oracle中的数据表"><a href="#Oracle中的数据表" class="headerlink" title="Oracle中的数据表"></a>Oracle中的数据表</h3><p>数据表表是存储数据时的一个基本存储单位，Oracle数据库中的表都是二维结构，由行和列组成，横向就是行，纵向就是列。行就是一条记录，列就是字段或者域。每张表的每一列数据都必须具有相同的数据类型，每一列的名字以及每一行记录都要是唯一的</p>
+<h4 id="数据表中的数据类型"><a href="#数据表中的数据类型" class="headerlink" title="数据表中的数据类型"></a>数据表中的数据类型</h4><p>Oracle中的数据类型分为字符型、数值型、日期型、其他类型。</p>
+<ol>
+<li><p>字符型：</p>
+<p>  CHAR(n)、 NCHAR(n)：定长类型，其中NCHAR是以Unicode存储的，且CHAR最大长度为2000，NCHAR最大长度为1000。通常情况下使用NCHAR存储汉字</p>
+<p>  VARCHAR2(N)、NVARCHAR2(N)：变长类型，其中NVARCHAR@是使用unicode存储的，前者最大长度为4000，后者为2000</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>数值型：</p>
+<p> NUMBER(p,s)：其中p代表的是有效数字，s代表小数点后的位数，如果s为正数，代表小数点上最低有效数字的位数，如果为负数代表小数点上最大有效数字到小数点的位数。通常使用这个类型</p>
+<p> FLOAT(n)：主要存储二进制数据，能表达的二进制位数为1-126位，如果需要把这个二进制转换为十进制，就需要乘以0.30103。</p>
+</li>
+<li><p>日期型：</p>
+<p> DATE: 范围为4712年1月1日到9999年12月31日，DATE类型可以精确到秒，较常用</p>
+<p> TIMESTAMP:可以精确到小树苗</p>
+</li>
+<li><p>其他类型：主要用来存放大对象</p>
+<p> BLOB:可以存放4G的数据，以二进制形式存放</p>
+</li>
+</ol>
+<pre><code>CLOB:容量为4GB，以字符串形式存放
+</code></pre><h4 id="与数据表有关的SQL语句"><a href="#与数据表有关的SQL语句" class="headerlink" title="与数据表有关的SQL语句"></a>与数据表有关的SQL语句</h4><p>创建表：在同一用户下，表名是唯一的。可以使用dufault关键字来为这一列设置默认值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE table_name </span><br><span class="line">(</span><br><span class="line">column_name datatype,..</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>数据表添加字段：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE Ttable_name </span><br><span class="line">ADD column_name datatype</span><br></pre></td></tr></table></figure>
+<p>数据表更改字段:更改数据类型时，如果数据类型从大到小可能会发生数据溢出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE table_name </span><br><span class="line">MODIFY column_name datatype</span><br></pre></td></tr></table></figure>
+<p>数据表删除字段：不能删除sys用户创建的表的字段，所以不要把对象建立在sys用户下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE table_name</span><br><span class="line">DROP COLUMN column_name;</span><br></pre></td></tr></table></figure>
+<p>数据表修改字段名:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE table_name </span><br><span class="line">RENAME COLUMN column_name TO new_column_name</span><br></pre></td></tr></table></figure>
+<p>修改数据表名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RENAME table_name TO new_table_name</span><br></pre></td></tr></table></figure>
+<p>删除数据表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 截断表：删除掉表中的全部数据，不是把表删除掉，比DELETE语句速度要快</span><br><span class="line">TRUNCATE TABLE table_name</span><br><span class="line"></span><br><span class="line">// 删除表</span><br><span class="line">DROP TABLE table_name</span><br></pre></td></tr></table></figure>
+<h4 id="与数据表中的数据有关的SQL语句"><a href="#与数据表中的数据有关的SQL语句" class="headerlink" title="与数据表中的数据有关的SQL语句"></a>与数据表中的数据有关的SQL语句</h4><p>插入数据:与mysql不同的是必须要加上INTO，插入时如果要使用默认值的话可以使用defalut关键词，如果添加时不指定有默认值的字段，字段会自动添加默认值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO table_name </span><br><span class="line">(column1,column2,..)</span><br><span class="line">VALUES(value1,value2,..)</span><br></pre></td></tr></table></figure>
+<p>插入数据时复制其他表的数据进行插入：</p>
+<p>在创建表时复制其他表的数据：在创建表时如果需要复制其他表的数据，则新建的表中的字段不能指定数据类型，字段名可以不相同。且新表创建了几个字段，就需要查找到几个字段填充。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE table_name</span><br><span class="line">[column_name,...]</span><br><span class="line">AS</span><br><span class="line">SELECT olumn1,.. | * FROM table_old</span><br></pre></td></tr></table></figure>
+<p>在添加数据时复制其他表的数据：需要注意的是，新表的字段顺序及数据类型必须与查询到的顺序及数据类型一致</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO table_new </span><br><span class="line">[(column1,..)]</span><br><span class="line">SELECT column1,.. | * FROM table_old</span><br></pre></td></tr></table></figure>
+<p>修改数据：在修改时注意数据类型是否相匹配，如果不加条件则会修改全部数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE table_name SET column1 = value1,... [WHERE conditions]</span><br></pre></td></tr></table></figure>
+<p>删除数据：如果不加条件则删除全部，如果要删除全部数据截断表的效率更高</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM table_name [WHERE conditions]</span><br></pre></td></tr></table></figure>
+<h3 id="Oracle数据库中的约束"><a href="#Oracle数据库中的约束" class="headerlink" title="Oracle数据库中的约束"></a>Oracle数据库中的约束</h3><p>数据类型是控制数据每一列的数据类型，而约束就是控制每一列是否满足某一条件，约束的作用是为每一列定义规则，确保数据的完整性</p>
+<h4 id="与约束有关的SQL语句"><a href="#与约束有关的SQL语句" class="headerlink" title="与约束有关的SQL语句"></a>与约束有关的SQL语句</h4><p>查看某张表的所有约束信息：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM user_constraints WHERE table_name = &apos;table_name&apos;</span><br></pre></td></tr></table></figure>
+<p>更改约束的名称：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE table_name</span><br><span class="line">RENAME CONSTRAINT old_name TO new_name</span><br></pre></td></tr></table></figure>
+<p>删除约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 禁用与启用约束</span><br><span class="line">ALTER TABLE table_name</span><br><span class="line">DISABLE | ENABLE CONSTRAINT constraint_name</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 删除约束</span><br><span class="line">ALTER TABLE table_name</span><br><span class="line">DROP CONSTAINT constraint_name</span><br><span class="line"></span><br><span class="line">// 删除主键约束,是否级联删除</span><br><span class="line">ALTER TABLE table_name</span><br><span class="line">DROP PRIMARY KEY[CASCADE]</span><br></pre></td></tr></table></figure>
+<h4 id="非空约束"><a href="#非空约束" class="headerlink" title="非空约束"></a>非空约束</h4><p>非空约束：NOT NULL，非空约束可以在创建表、修改表时设置，在创建表时或修改表时在数据类型之后添加非空约束，默认情况下所有数据都是可以为空的。在修改字段为非空时，必须保证所有数据是没有控制的，负责会有异常。去除非空约束时，把NOT NULL 改为 NULL就可以了</p>
+<h4 id="主键约束"><a href="#主键约束" class="headerlink" title="主键约束"></a>主键约束</h4><p>主键约束：PRIMARY KEY,确保表当中每一行数据的唯一性，设置主键约束的字段要求该字段是非空、唯一的，一张表只能设计一个主键约束，主键约束可以由多个字段构成（联合主键或复合主键），在数据类型之后加上主键约束就可以为该列添加主键约束</p>
+<h5 id="与主键约束有关的SQL语句"><a href="#与主键约束有关的SQL语句" class="headerlink" title="与主键约束有关的SQL语句"></a>与主键约束有关的SQL语句</h5><p>在创建表时创建联合主键约束：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE table_name(</span><br><span class="line">column_name datatype constraint_name,</span><br><span class="line">...,</span><br><span class="line">CONSTRAINT constraint_name </span><br><span class="line">PRIMARY KEY(column_name1,..)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>在修改表时添加主键约束：在修改时必须保证该列的值是唯一的，且不能有空值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE table_name</span><br><span class="line">ADD CONSTRAINT constraint_name PRIMARY KEY(column_1,...)</span><br></pre></td></tr></table></figure>
+<h4 id="外键约束"><a href="#外键约束" class="headerlink" title="外键约束"></a>外键约束</h4><p>外键约束：REFERENCES</p>
+<p>在创建表时设置外键约束：在设置外键约束时，主表字段必须是主键，且主从表中相应的字段必须是同一个数据类型，从表中外键字段的值必须来自主表中的相应字段的值，或者为null</p>
+<h5 id="与外键约束有关的SQL语句"><a href="#与外键约束有关的SQL语句" class="headerlink" title="与外键约束有关的SQL语句"></a>与外键约束有关的SQL语句</h5><p>在创建表时创建外键约束<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 创建从表</span><br><span class="line">CREATE TABLE table1_name(</span><br><span class="line">// 从表字段设置外键约束</span><br><span class="line">column_name datatype REFERENCES </span><br><span class="line">// 主表列</span><br><span class="line">table2_name(column_name),...</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 创建从表</span><br><span class="line">CREATE TABLE table_name(</span><br><span class="line">column_name datatype,</span><br><span class="line">....,</span><br><span class="line">// 为从表某列设置外键</span><br><span class="line">CONSTRAINT constraint_name FOREIGN KEY</span><br><span class="line">(column_name) REFERENCES </span><br><span class="line">// 主表某列设置外键 【是否设置级联删除：主表删除某一数据则从表也删除外键相关的数据，确保主从表数据的完整性】</span><br><span class="line">table_name(column_name) [ON DELETE CASSADE]</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<p>在修改表时添加外键约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLE table_name</span><br><span class="line">ADD CONSTRAINT constraint_name FOREIGY KEY</span><br><span class="line">// 从表外键</span><br><span class="line">(column_name) REFERENCES</span><br><span class="line">// 主表外键</span><br><span class="line">table_name(column_name) [ON DELETE CASCADE]</span><br></pre></td></tr></table></figure>
+<h4 id="唯一约束"><a href="#唯一约束" class="headerlink" title="唯一约束"></a>唯一约束</h4><p>唯一约束：UNIQUE,保证字段的唯一性，它与主键约束的区别是唯一约束可以有空值且在一张表中可以有多个唯一约束</p>
+<h5 id="与唯一约束有关的SQL语句"><a href="#与唯一约束有关的SQL语句" class="headerlink" title="与唯一约束有关的SQL语句"></a>与唯一约束有关的SQL语句</h5><p>在创建表时设置唯一约束：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">CREATE TABLE table_name(</span><br><span class="line">column_name datatype constraint,</span><br><span class="line">...,</span><br><span class="line">CONSTRAINT constraint_name UNIQUE (column_name),</span><br><span class="line">...</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>在修改表时添加唯一约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLE table_name</span><br><span class="line">ADD CONSTRAINT constraint_name</span><br><span class="line">UNIQUE(column_name)</span><br></pre></td></tr></table></figure>
+<h4 id="检查约束"><a href="#检查约束" class="headerlink" title="检查约束"></a>检查约束</h4><p>检查约束： CHECK(expressions),让表中的值更具有实际意义，比如用户表中的年龄只能在0-150之间，这就需要用到检查约束</p>
+<h5 id="与检查约束有关的SQL语句"><a href="#与检查约束有关的SQL语句" class="headerlink" title="与检查约束有关的SQL语句"></a>与检查约束有关的SQL语句</h5><p>在创建表时设置检查约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 创建表</span><br><span class="line">CREATE TABLE table_name(</span><br><span class="line">column_name datatype constraint,</span><br><span class="line">...,</span><br><span class="line">// 设置约束</span><br><span class="line">CONSTRAINT constraint_name column_name</span><br><span class="line">CHECK(expressions)</span><br></pre></td></tr></table></figure>
+<p>在修改表时添加检查约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLE table_name</span><br><span class="line">ADD CONSTRAINT constraint_name CHECK(expressions)</span><br><span class="line"></span><br><span class="line">// 例子：</span><br><span class="line">ALTER TABLE userinfo</span><br><span class="line">ADD CONSTRAINT ck_salary CHECK(salay&gt;0)</span><br></pre></td></tr></table></figure>
+<h3 id="Oracle数据库中的查询语句"><a href="#Oracle数据库中的查询语句" class="headerlink" title="Oracle数据库中的查询语句"></a>Oracle数据库中的查询语句</h3><h4 id="与查询有关的SQL语句"><a href="#与查询有关的SQL语句" class="headerlink" title="与查询有关的SQL语句"></a>与查询有关的SQL语句</h4><p>基本查询语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// DISTINCT:查询结果不显示重复记录</span><br><span class="line">SELECT [DISTINCT] &#123;column_name1,... | *&#125;</span><br><span class="line">FROM table_name</span><br><span class="line">[WHERE conditions]</span><br></pre></td></tr></table></figure>
+<p>让查询结果的字段名以指定方式呈现：其中COLUMN可以简写为COL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">COLUMN colum_name HEADING new_name</span><br></pre></td></tr></table></figure>
+<p>设置查询结果的格式：其中COLUMN可以简写为COL,字符类型只能设置显示的长度，dataformat中用a代表字符，9代表数字</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">COLUMN column_name FORMAT dataformat</span><br><span class="line"></span><br><span class="line">// 让username字段只显示10个汉字</span><br><span class="line">COL username FORMAT a10</span><br><span class="line">// 让salary字段显示4位数与小数点后一位,如果字段数值长度超过了设置的长度，就会用#代替</span><br><span class="line">COL salary FORMAT 9999.9</span><br><span class="line">// 让查询结果加上符号</span><br><span class="line">COL salary FORMAT ￥9999.9</span><br></pre></td></tr></table></figure>
+<p>清除字段的查询结果格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">COLUMN column_name CLEAR</span><br></pre></td></tr></table></figure>
+<h4 id="查询中的运算符与表达式"><a href="#查询中的运算符与表达式" class="headerlink" title="查询中的运算符与表达式"></a>查询中的运算符与表达式</h4><p>Oracle中的运算符与表达式：表达式是操作数与运算符来组合构成的，Oracle中的操作数可以有变量、常量及表中的字段组成。Oracle数据库中提供了算数运算符、比较运算符及逻辑运算符：AND(与),OR(或),NOT(非)，比较运算符的优先级大于逻辑运算符，而逻辑运算符的执行优先级为 NOT、AND、OR</p>
+<p>在select语句中使用算数运算符不影响表中的数据，在Oracle数据库中，!=可以用&lt;&gt;代替，&lt;&gt;是标准语法，可以移植到其他任何平台，!=是非标准语法，可移植性差，但都是表示不等于的意思，应用中尽量用&lt;&gt;</p>
+<h4 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h4><p>Oracle中模糊查询通过LIKE与通配符实现，其中通配符中一个_只能代表一个字符，%可以代表0到多个任意字符</p>
+<h4 id="范围查询"><a href="#范围查询" class="headerlink" title="范围查询"></a>范围查询</h4><ul>
+<li>通过BETWEEN..AND实现：查询结果是一个闭合区间，查询结果包括BETWEEN的值与AND的值</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 利用BETWEEN..AND查询薪资在800到2000之间的用户</span><br><span class="line">SELECT * FROM users WHERE salary BETWEEN 800 AND 2000</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过IN/NOT IN实现：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 查询用户名是aaa或者bbb的结果</span><br><span class="line">SELECT * FROM users WHERE username in(&apos;aaa&apos;,&apos;bbb&apos;)</span><br></pre></td></tr></table></figure>
+<h4 id="查询结果排序"><a href="#查询结果排序" class="headerlink" title="查询结果排序"></a>查询结果排序</h4><p>Oracle数据库中的查询结果排序，通过ORDER BY实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// 查询语句</span><br><span class="line">SELECT * FROM table_name WHERE conditions </span><br><span class="line">// 排序语句，按照某个字段排序，DESC为降序，ASC为升序</span><br><span class="line">ORDER BY column1 DESC/ASC,</span><br><span class="line">// 按照多个字段排序，当有多个字段排序时，会在满足第一个排序条件时执行后边的排序条件</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h4 id="Oracle数据库中的枚举"><a href="#Oracle数据库中的枚举" class="headerlink" title="Oracle数据库中的枚举"></a>Oracle数据库中的枚举</h4><p>CASE..WHEN语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 当某个字段的值满足WHEN的值后就会得到THEN后边的结果</span><br><span class="line">CASE column_name</span><br><span class="line">WHEN value1 THEN result1,</span><br><span class="line">// 可以有多个WHEN..THEN语句</span><br><span class="line">...</span><br><span class="line">// 当所有WHEN都不满足时得到这个结果</span><br><span class="line">[ELSE result]</span><br><span class="line">END</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 例子</span><br><span class="line">SELECT username,</span><br><span class="line">CASE username</span><br><span class="line">WHEN &apos;aaa&apos; THEN &apos;计算机部门&apos;</span><br><span class="line">WHEN &apos;bbb&apos; THEN &apos;市场部门&apos;</span><br><span class="line">ELSE &apos;其他部门&apos;</span><br><span class="line">END AS 部门</span><br><span class="line">FROM users;</span><br></pre></td></tr></table></figure>
+<p>CASE..WHEN的第二种用法:CASE搜索形式，相较于第一种方式更为灵活</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">CASE</span><br><span class="line">WHEN column_name = value1 THEN result1,</span><br><span class="line">... </span><br><span class="line">[ELSE result] END</span><br><span class="line"></span><br><span class="line">// 例子</span><br><span class="line">SELECT username,</span><br><span class="line">CASE</span><br><span class="line">WHEN username = &apos;aaa&apos; THEN &apos;计算机部门&apos;</span><br><span class="line">WHEN username = &apos;bbb&apos; THEN &apos;市场部门&apos;</span><br><span class="line">ELSE &apos;其他部门&apos;</span><br><span class="line">END AS 部门</span><br><span class="line">FROM users;</span><br></pre></td></tr></table></figure>
+<p>Oracle中的DECODE函数，DECODE函数能够对字段的值进行判断：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 如果不写defaultvalue的值，当所有条件都不满足时，会返回空值</span><br><span class="line">DECODE (column_name,value1,result1,...,defaultvalue)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 例子</span><br><span class="line">SELECT username,</span><br><span class="line">DECODE(username,</span><br><span class="line">&apos;aaa&apos;,&apos;计算机部门&apos;,</span><br><span class="line">&apos;bbb&apos;,&apos;市场部门&apos;,</span><br><span class="line">&apos;其他部门&apos;) AS 部门;</span><br></pre></td></tr></table></figure>
+<h3 id="数据字典"><a href="#数据字典" class="headerlink" title="数据字典"></a>数据字典</h3><p><strong>数据字典是是数据库提供的表，用于查看数据库的信息</strong></p>
+<p>dab_user:用户数据字典</p>
+<p>dba_tablespaces:管理权限用户表空间数据字典，只能在拥有管理权限的账户下使用</p>
+<p>user_tablespaces:普通用户表空间数据字典</p>
+<p>dba_users、user_users:管理权限用户数据字典以及普通用户数据字典</p>
+<p>dba_tablespaces、user_tablespaces：管理权限用户表空间数据字典及普通用户的表空间数据字典</p>
+<p>dba_data_files、dba_temp_files：数据文件数据字典</p>
+<p>user_constraints:约束信息数据词典</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/02/命令行常用命令/" rel="next" title="命令行常用命令">
+                <i class="fa fa-chevron-left"></i> 命令行常用命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/29/数据库/" rel="prev" title="数据库">
+                数据库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">冰断秋</p>
+              <p class="site-description motion-element" itemprop="description">希望你每一天都过得对得起自己</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+		
+      </section>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=35288859&auto=1&height=66"></iframe>
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Oracle数据库"><span class="nav-number">1.</span> <span class="nav-text">Oracle数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Oracle数据库的安装"><span class="nav-number">1.1.</span> <span class="nav-text">Oracle数据库的安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#企业管理器"><span class="nav-number">1.2.</span> <span class="nav-text">企业管理器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Oracle数据库的卸载"><span class="nav-number">1.3.</span> <span class="nav-text">Oracle数据库的卸载</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户与表空间"><span class="nav-number">2.</span> <span class="nav-text">用户与表空间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用户"><span class="nav-number">2.1.</span> <span class="nav-text">用户</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#与用户有关的SQL语句"><span class="nav-number">2.1.1.</span> <span class="nav-text">与用户有关的SQL语句</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表空间"><span class="nav-number">2.2.</span> <span class="nav-text">表空间</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#表空间的分类"><span class="nav-number">2.2.1.</span> <span class="nav-text">表空间的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#永久表空间"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">永久表空间</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#临时表空间"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">临时表空间</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#UNDO表空间"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">UNDO表空间</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#与表空间有关的SQL语句"><span class="nav-number">2.2.2.</span> <span class="nav-text">与表空间有关的SQL语句</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Oracle中的数据表"><span class="nav-number">3.</span> <span class="nav-text">Oracle中的数据表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据表中的数据类型"><span class="nav-number">3.1.</span> <span class="nav-text">数据表中的数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与数据表有关的SQL语句"><span class="nav-number">3.2.</span> <span class="nav-text">与数据表有关的SQL语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与数据表中的数据有关的SQL语句"><span class="nav-number">3.3.</span> <span class="nav-text">与数据表中的数据有关的SQL语句</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Oracle数据库中的约束"><span class="nav-number">4.</span> <span class="nav-text">Oracle数据库中的约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#与约束有关的SQL语句"><span class="nav-number">4.1.</span> <span class="nav-text">与约束有关的SQL语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非空约束"><span class="nav-number">4.2.</span> <span class="nav-text">非空约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主键约束"><span class="nav-number">4.3.</span> <span class="nav-text">主键约束</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#与主键约束有关的SQL语句"><span class="nav-number">4.3.1.</span> <span class="nav-text">与主键约束有关的SQL语句</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外键约束"><span class="nav-number">4.4.</span> <span class="nav-text">外键约束</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#与外键约束有关的SQL语句"><span class="nav-number">4.4.1.</span> <span class="nav-text">与外键约束有关的SQL语句</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#唯一约束"><span class="nav-number">4.5.</span> <span class="nav-text">唯一约束</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#与唯一约束有关的SQL语句"><span class="nav-number">4.5.1.</span> <span class="nav-text">与唯一约束有关的SQL语句</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检查约束"><span class="nav-number">4.6.</span> <span class="nav-text">检查约束</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#与检查约束有关的SQL语句"><span class="nav-number">4.6.1.</span> <span class="nav-text">与检查约束有关的SQL语句</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Oracle数据库中的查询语句"><span class="nav-number">5.</span> <span class="nav-text">Oracle数据库中的查询语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#与查询有关的SQL语句"><span class="nav-number">5.1.</span> <span class="nav-text">与查询有关的SQL语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询中的运算符与表达式"><span class="nav-number">5.2.</span> <span class="nav-text">查询中的运算符与表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模糊查询"><span class="nav-number">5.3.</span> <span class="nav-text">模糊查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#范围查询"><span class="nav-number">5.4.</span> <span class="nav-text">范围查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询结果排序"><span class="nav-number">5.5.</span> <span class="nav-text">查询结果排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Oracle数据库中的枚举"><span class="nav-number">5.6.</span> <span class="nav-text">Oracle数据库中的枚举</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据字典"><span class="nav-number">6.</span> <span class="nav-text">数据字典</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冰断秋</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

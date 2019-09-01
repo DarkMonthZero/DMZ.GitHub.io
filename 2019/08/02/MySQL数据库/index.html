@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="MySQL是一种开放源代码的关系型数据库管理系统，本篇博客记录了与MySQL相关的知识">
+<meta name="keywords" content="冰断秋">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL数据库">
+<meta property="og:url" content="http://yoursite.com/2019/08/02/MySQL数据库/index.html">
+<meta property="og:site_name" content="但行己路，莫问他人">
+<meta property="og:description" content="MySQL是一种开放源代码的关系型数据库管理系统，本篇博客记录了与MySQL相关的知识">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-01T09:46:03.114Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL数据库">
+<meta name="twitter:description" content="MySQL是一种开放源代码的关系型数据库管理系统，本篇博客记录了与MySQL相关的知识">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/02/MySQL数据库/">
+
+
+
+
+
+  <title>MySQL数据库 | 但行己路，莫问他人</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">但行己路，莫问他人</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/02/MySQL数据库/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冰断秋">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="但行己路，莫问他人">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MySQL数据库</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-02T19:27:32+08:00">
+                2019-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>MySQL是一种开放源代码的关系型数据库管理系统，本篇博客记录了与MySQL相关的知识</strong><br><a id="more"></a></p>
+<h3 id="MySql数据库"><a href="#MySql数据库" class="headerlink" title="MySql数据库"></a>MySql数据库</h3><ul>
+<li>MySql是一个关系型数据库，关系型数据库就是一个二维的表格</li>
+</ul>
+<h4 id="MySQL目录结构"><a href="#MySQL目录结构" class="headerlink" title="MySQL目录结构"></a>MySQL目录结构</h4><ul>
+<li><p>bin目录：存储可执行文件</p>
+</li>
+<li><p>data目录：存储数据文件</p>
+</li>
+<li><p>docs：文档</p>
+</li>
+<li><p>include目录：存储包含的头文件</p>
+</li>
+<li><p>lib目录：存储库文件</p>
+</li>
+<li><p>share：错误信息和字符集文件</p>
+</li>
+</ul>
+<h4 id="更改MySQL的配置文件"><a href="#更改MySQL的配置文件" class="headerlink" title="更改MySQL的配置文件"></a>更改MySQL的配置文件</h4><ul>
+<li>在配置文件my.ini修改以下选项，需要注意的是每次修改完配置文件需要重新启动MySQL服务</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">## 修改默认字符集</span><br><span class="line">[mysql]</span><br><span class="line">default-character-set=utf8</span><br><span class="line">## 修改服务器字符集</span><br><span class="line">character-set-server=utf8</span><br><span class="line">## 修改默认存储引擎</span><br><span class="line">default-storage-engine=INNODB</span><br></pre></td></tr></table></figure>
+<h4 id="MySQL常用命令行命令"><a href="#MySQL常用命令行命令" class="headerlink" title="MySQL常用命令行命令"></a>MySQL常用命令行命令</h4><pre><code>-D name  打开名字为name的数据库
+
+--delimiter name  指定分隔符
+
+-h  服务器名称
+
+-p 密码
+
+-P 端口号
+
+--prompt name 设置提示符（最初的为mysql&gt; ）为name，可以在登录数据库或者登录到数据库里使用,而prompt的参数可以为\d(当前数据库) \D(完整的日期) \h(服务器名称) \u(当前用户)
+
+-u  用户名
+
+-V  版本信息
+
+exit  退出数据库
+</code></pre><p>例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 登录到127.0.0.1的3306端口，用户名为root</span><br><span class="line">mysql -u root -p -P 3306 -h 127.0.0.1</span><br></pre></td></tr></table></figure>
+<h4 id="MySQL系统命令"><a href="#MySQL系统命令" class="headerlink" title="MySQL系统命令"></a>MySQL系统命令</h4><pre><code>SELECT VERSION();   显示当前服务器版本
+
+SELECT NOW();   显示当前日期时间
+
+SELECT USER();  显示当前用户
+
+SHOW WARNINGS； 查看警告信息
+
+SHOW INDEXES FROM tbl_name； 查询表中的所有索引
+
+SELECT ROW_COUNT();  查询上条SQL语句影响的记录行数
+
+DESC tab_name;  查看表字段描述
+</code></pre><h4 id="MySQL语法规范"><a href="#MySQL语法规范" class="headerlink" title="MySQL语法规范"></a>MySQL语法规范</h4><ul>
+<li><p>关键字与函数名称全部大写</p>
+</li>
+<li><p>数据库名称、表名称、字段名称全部小写</p>
+</li>
+<li><p>SQL语句必须以分号结尾</p>
+</li>
+</ul>
+<h3 id="SQL语句事例"><a href="#SQL语句事例" class="headerlink" title="SQL语句事例"></a>SQL语句事例</h3><p><strong>mysql语法不区分大小写，要有分号，以下所有SQL语句例子{}代表必选项，[]代表可选项</strong></p>
+<h4 id="与创建数据库有关的SQL语句"><a href="#与创建数据库有关的SQL语句" class="headerlink" title="与创建数据库有关的SQL语句"></a>与创建数据库有关的SQL语句</h4><p>创建数据库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">CREATE &#123;DATABASE | SCHEMA&#125; [IF NOT EXISTS] db_name [DEFAULT] [CHARACTER SET = charset_name]</span><br></pre></td></tr></table></figure>
+<p>查看当前服务器下的数据库列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SHOW &#123;DATABASES | SCHEMAS&#125; [LIKE &apos;pattern&apos; | WHERE expr]</span><br></pre></td></tr></table></figure>
+<p>查询创建数据库的SQL语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">show create database db_name</span><br></pre></td></tr></table></figure>
+<p>修改数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER &#123;DATABASE | SCHEMA&#125; [db_name] [DEFAULT] [CHARACTER SET [=] charset_name]</span><br></pre></td></tr></table></figure>
+<p>删除数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DROP &#123;DATABASE | SCHEMA&#125; [IF EXISTS] dn_name</span><br></pre></td></tr></table></figure>
+<p>打开数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">USE DB_NAME</span><br></pre></td></tr></table></figure>
+<p>查询当前打开的数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SELECT DATABASE()</span><br></pre></td></tr></table></figure>
+<h4 id="与数据表有关的SQL语句"><a href="#与数据表有关的SQL语句" class="headerlink" title="与数据表有关的SQL语句"></a>与数据表有关的SQL语句</h4><p>数据表是数据库最重要的组成部分之一，是其他对象的基础，在设计表之前需要打开数据库</p>
+<p>创建数据表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">CREATE TABLE [IF NOT EXISTS] table_name(</span><br><span class="line">	column_name data_type,</span><br><span class="line">	....</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>查询数据库里的数据表,不但可以查当前数据库，也可以通过添加数据库名字来查询其他数据库的表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SHOW TABLES [FROM db_name] [LIKE &apos;pattern&apos; | WHERE expr]</span><br></pre></td></tr></table></figure>
+<p>查看数据表结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SHOW COLUMNS FROM tb_name;</span><br></pre></td></tr></table></figure>
+<p>往数据表中插入数据,如果省略掉列名称，就要为所有字段赋值，负责会报名称不匹配错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">INSERT [INTO] tb_name [(col_name,...)] VALUES(val,...)</span><br></pre></td></tr></table></figure>
+<p>查询数据表中的记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SELECT expr,... FROM tb_name WHERE 条件</span><br></pre></td></tr></table></figure>
+<p>根据条件删除数据表中的记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DELETE FROM tb_name WHERE expr;</span><br></pre></td></tr></table></figure>
+<p>查看创建数据表时的SQL语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SHOW CREATE TABLE tb_name;</span><br></pre></td></tr></table></figure>
+<p>查询数据表的索引并以网格的形态出现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SHOW INDEXES FROM tb_name\G</span><br></pre></td></tr></table></figure>
+<p>数据表中添加单列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLE tbl_name ADD [COLUMN] col_name column_defintion [FIRST | AFTER col_name]</span><br><span class="line"></span><br><span class="line">例子：ALTER TABLE user2 ADD age TINYINT;</span><br></pre></td></tr></table></figure>
+<p>添加多列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLE tbl_name ADD [COLUMN] (col_name column_definition,...)</span><br></pre></td></tr></table></figure>
+<p>删除数据表中的列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLE tbl_name DROP [COLUMN] col_name</span><br></pre></td></tr></table></figure>
+<p>修改数据表中的列定义,需要注意的是如果要把数据类型从大类型转为小类型可能会发生数据丢失问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLE tbl_name MODIFY [COLUMN] col_name column_definition [FIRST|AFTER col_name]</span><br><span class="line"></span><br><span class="line">例子：ALTER TABLE user2 MODIFY id SMALLINT(5) UNSIGNED NOT NULL FIRST;</span><br></pre></td></tr></table></figure>
+<p>修改列名称，需要注意的是如果修改列名称和表名称可能会导致某些SQL语句无法执行，所以不要随意更改列名称与表名称</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLE tbl_name CHANGE [COLUMN] old_col_name new_col_name column_definition [FIRST|AFTER col_name]</span><br><span class="line"></span><br><span class="line">例子：ALTER TABLE user2 CHANGE id new_id SMALLINT(5) NOT NULL FIRST;</span><br></pre></td></tr></table></figure>
+<p>修改数据表名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//方法1</span><br><span class="line">ALTER TABLE tbl_name RENAME new_tbl_name</span><br><span class="line"></span><br><span class="line">//方法2</span><br><span class="line">RENAME TABLE tbl_name TO new_tbl_name [tbl_name2 TO new_tbl_name2,...]</span><br></pre></td></tr></table></figure>
+<h4 id="多表连接相关的SQL语句"><a href="#多表连接相关的SQL语句" class="headerlink" title="多表连接相关的SQL语句"></a>多表连接相关的SQL语句</h4><p>多表连接，如果表中的列名有相同的话，可以给每个表起别名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">table_reference </span><br><span class="line">&#123;[INNER | CROSS] JOIN | LEFT|RIGHT[OUTHER] JOIN&#125;</span><br><span class="line">table_reference</span><br><span class="line">ON conditiona_expr</span><br></pre></td></tr></table></figure>
+<p>多表更新:参照另一张表来更新本表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">UPDATE table_references SET col_name1=&#123;expr1|DEFAULT&#125;[col_name2=&#123;expr2|DEFAULT&#125;]..[WHERE where_condition]</span><br><span class="line"></span><br><span class="line">例子：参照商品属性表修改商品表里的商品属性：</span><br><span class="line">UPDATE tdb_goods INNER JOIN tdb_goods_cate ON goods_cate=cate_name SET goods_cate=cate_id;</span><br></pre></td></tr></table></figure>
+<p>创建数据表的同时将查询结果写入到数据表里。在创建表时顺带插入数据时，是以select语句返回的字段同名同类型同符号插入的，而如果没有同名的字段，则会自动新增该字段并插入，如果指定了同名字段，则要保证数据类型必须比原本的数据类型大且符号相同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">CREATE TABLE [IF NOT EXISTS] tbl_name [(create_definiton,...)] select_statement</span><br></pre></td></tr></table></figure>
+<p>多表删除，删除tbl_name中符合条件的记录，条件可以是两张表的id相等。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DELETE tbl_name[.*] [,tbl_name[.*]]..</span><br><span class="line">FROM table_references</span><br><span class="line">[WHERE where_condition]</span><br><span class="line"></span><br><span class="line">//删除A表中和B表ID相同的记录</span><br><span class="line">DELETE a FROM a,b WHERE a.id = b.id;</span><br></pre></td></tr></table></figure>
+<h4 id="与约束相关的SQL语句"><a href="#与约束相关的SQL语句" class="headerlink" title="与约束相关的SQL语句"></a>与约束相关的SQL语句</h4><p>添加主键约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLE tbl_name ADD [CONSTRAINT [symbol]] PRIMARY KEY [index_type] (index_col_name,...)</span><br><span class="line"></span><br><span class="line">例子：ALTER TABLE user2 PRIMARY KEY (id);</span><br></pre></td></tr></table></figure>
+<p>添加唯一约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLE tbl_name ADD [CONSTRAINT [symbol]] UNIQUE [INDEX|KEY] [index_name] [index_type] (index_col_name,...)</span><br><span class="line"></span><br><span class="line">例子：ALTER TABLE user2 UNIQUE (password);</span><br></pre></td></tr></table></figure>
+<p>添加外键约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLE tbl_name ADD [CONSTRAINT [symbol]] FOREIGN KEY [index_name] (index_col_name,...) reference_definition</span><br><span class="line"></span><br><span class="line">例子：ALTER TABLE user2 ADD FOREIGN KEY (pid) REFERENCES province (id);</span><br></pre></td></tr></table></figure>
+<p>添加/删除默认约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLE tbl_name ALTER col_name &#123;SET DEFAULT literal | DROP DEFAULT&#125;</span><br><span class="line"></span><br><span class="line">例子： ALTER TABLE user2 ALTER age SET DEFAULT 15；</span><br><span class="line">	  ALTER TABLE user2 ALTER age DROP DEFAULT;</span><br></pre></td></tr></table></figure>
+<p>删除主键约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLE tbl_name DROP PRIMARY KEY</span><br></pre></td></tr></table></figure>
+<p>删除唯一约束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLE tbl_name DROP &#123;INDEX|KEY&#125; index name</span><br><span class="line"></span><br><span class="line">// 删除索引</span><br><span class="line">例子：ALTER TABLE user2 DROP INDEX username;</span><br></pre></td></tr></table></figure>
+<p>删除外键约束,删除外键约束需要知道约束名字，名字可以通过查询创造表时的SQL语句来获取，删除外键约束之后需要删除该列的索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ALTER TABLE tbl_name DROP FOREIGN KEY fk_symbol</span><br><span class="line"></span><br><span class="line">例子：ALTER TABLE user2 DROP FOREIGN KEY user2_ibfk_1;</span><br></pre></td></tr></table></figure>
+<h4 id="与数据表中记录相关的SQL语句"><a href="#与数据表中记录相关的SQL语句" class="headerlink" title="与数据表中记录相关的SQL语句"></a>与数据表中记录相关的SQL语句</h4><p>插入记录,如果插入时省略字段名，则代表依次插入全部的字段值，自动增长的值可以用NULL或DEFAULT代替，如果一个字段有DEFAULT值，则插入数据的时候可以使用DEFAULT关键字来代替数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//方法1</span><br><span class="line">INSERT [INTO] tbl_name [(col_name)] &#123;VALUES|VALUE&#125; (&#123;expr|DEFAULT&#125;,...),(...),...</span><br><span class="line"></span><br><span class="line">//往用户表里插入一条数据，VALUE分别是id、用户名、密码、年龄、性别</span><br><span class="line">INSERT user1 VALUES(NULL,&apos;Rose&apos;,md5(123),DEFAULT,0)</span><br><span class="line">//插入多条数据</span><br><span class="line">INSERT user1 VALUES(NULL,&apos;Jake&apos;,123,10,1),(NULL,&apos;L&apos;,456,10,0),()...;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//方法2，相比于方法1，此方法可以用于子查询但不能一次插入多条数据</span><br><span class="line">INSERT [INTO] tbl_name SET col_name=&#123;expr|DEFAULT&#125;,...</span><br><span class="line"></span><br><span class="line">//将从商品表表中查询到的所有商品属性插入到test表中的属性名字字段</span><br><span class="line">例子：insert tdb_goods_cate(cate_name) (SELECT goods_cate from tdb_goods group by goods_cate);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//方法3,此方法可以将查询结果插入到指定数据表，也就是将SELECT的结果插入到tbl_name表中</span><br><span class="line">INSERT [INTO] tbl_name [(col_name,...)] SELECT ...</span><br></pre></td></tr></table></figure>
+<p>修改记录，如果不加条件则修改全部记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//单表更新</span><br><span class="line">UPDATE [LOW_PRIORITY] [IGNORE] table_referenve SET col_name1=&#123;expr1|DEFAULT&#125;,[col_name2=&#123;expre2|DEFAULT&#125;],...[WHERE where_condition]</span><br><span class="line"></span><br><span class="line">//修改表中id为1的数据</span><br><span class="line">UPDATE user1 SET username=&quot;admin&quot; WHERE id=1;</span><br><span class="line"></span><br><span class="line">//省略条件则所有age属性+5</span><br><span class="line">UPDATE user1 SET age =  age+5;</span><br><span class="line"></span><br><span class="line">//多表更新</span><br><span class="line">UPDATE table_references SET col_name1= &#123;expr1|DEFAULT&#125;[col_name2=&#123;expr2|DEFAULT&#125;]...[WHERE where_condition]</span><br></pre></td></tr></table></figure>
+<p>删除记录,如果不加条件则删除全部记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DELETE FROM tbl_name [WHERE where_condition]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 批量删除</span><br><span class="line">DELETE FROM tbl_name WHERE id IN (1,2);</span><br></pre></td></tr></table></figure>
+<p>查询记录，如果不加条件则显示全部记录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">SELECT select_expr [select_expr,..]</span><br><span class="line">[</span><br><span class="line">	FROM table_references</span><br><span class="line">	[WHERE where_condition]</span><br><span class="line">	[GROUP BY &#123;col_name|positon&#125; [ASC|EDSC],..]</span><br><span class="line">	[HAVING where_condition]</span><br><span class="line">	[ORDER BY&#123;col_name|expr|position&#125;[ASC|DESC],..]</span><br><span class="line">	[LIMIT&#123;offset,..&#125; row_count|row_count OFFSET offset]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h4 id="与自定义函数相关的SQL语句"><a href="#与自定义函数相关的SQL语句" class="headerlink" title="与自定义函数相关的SQL语句"></a>与自定义函数相关的SQL语句</h4><p>创建自定义函数,其中函数体可以由合法的SQL语句构成，也可以是简单的SELECT或INSERT语句，函数体如果为复合结构则使用BEGIN..END语句，复合结构可以包含声明、循环、控制结构,自定义函数的参数可以在定义后声明属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">CREATE FUNCTION function_name RETURNS &#123;STRING|INTEGER|REAL|DECIMAL&#125; routine_body</span><br><span class="line"></span><br><span class="line">// 例子</span><br><span class="line">CREAET FUNCTION test() RETURNS VARCHAR(30) RETURN DATE_FORMAT(NOW(),&apos;%Y年%m月%d日&apos;);</span><br></pre></td></tr></table></figure>
+<p>删除自定义函数或存储过程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DROP &#123;FUNCTION | PROCEDURE&#125; [IF EXISTS] &#123;function_name | procedure_name &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="与存储过程相关的SQL语句"><a href="#与存储过程相关的SQL语句" class="headerlink" title="与存储过程相关的SQL语句"></a>与存储过程相关的SQL语句</h4><p>创建储存过程，参数可以在前面带有IN、OUT、INOUT三个选项。IN表示这个参数在调用储存过程时必须要指定，并且在存储过程当中这个参数不能被返回。OUT表示该值可以在存储过程中改变，且可以被返回。INOUT表示该参数必须在调用时指定且值可以被存储过程改变。并且可以被返回。存储过程的过程体语法与自定义函数的函数体语法相同，存储过程的参数名不可以跟数据表中的参数名相同，负责可能会有错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">CREATE [DEFINER = &#123;user | CURRENT_USER&#125;]</span><br><span class="line">PROCEDURE sp_name([proc_paramter[,..]])</span><br><span class="line">[characteristic ...] routin_body</span><br><span class="line"></span><br><span class="line">proc_parameter:</span><br><span class="line">[IN | OUT | INOUT] param_name type</span><br><span class="line"></span><br><span class="line">//例子，创建一个存储过程用来通过id删除记录</span><br><span class="line">DELIMITER //</span><br><span class="line"></span><br><span class="line">CREATE PROCEDURE removeGoodsById(IN gid INT UNSIGNED)</span><br><span class="line">BEGIN</span><br><span class="line">DELETE FROM tdb_goods WHERE id = pid;</span><br><span class="line">END</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">DELIMITER ;</span><br><span class="line"></span><br><span class="line">// 例子2，创建一个带返回值的存储方法</span><br><span class="line">// 修改定界符</span><br><span class="line">DELIMITER //</span><br><span class="line">// 创建存储过程</span><br><span class="line">CREATE PROCEDURE pro_test2(IN b_id INT UNSIGNED,OUT nums INT UNSIGNED)</span><br><span class="line">BEGIN </span><br><span class="line">DELETE FROM tdb_good_brand WHERE brand_id = b_id; </span><br><span class="line">SELECT count(brand_id) FROM tdb_good_brand INTO nums;</span><br><span class="line">END</span><br><span class="line">//</span><br><span class="line">// 复原定界符</span><br><span class="line">DELIMITER ;</span><br><span class="line">// 调用存储过程,并创建一个变量来接受返回值,创建变量必须以@开头</span><br><span class="line">CALL pro_test2(17,@nums);</span><br><span class="line">// 查询返回值,可以一次查询多个变量，变量之间用,隔开</span><br><span class="line">SELECT @nums;</span><br></pre></td></tr></table></figure>
+<p>存储过程的调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 带参数的存储过程调用</span><br><span class="line">CALL sp_name([parameter],[]...)</span><br><span class="line">// 不带参数的存储过程调用</span><br><span class="line">CALL sp_name[()]</span><br></pre></td></tr></table></figure>
+<p>删除自定义函数或存储过程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">DROP &#123;FUNCTION | PROCEDURE&#125; [IF EXISTS] &#123;function_name | procedure_name &#125;</span><br></pre></td></tr></table></figure>
+<p>修改存储过程,只能修改一些简单的特性，不能修改过程体，修改过程体需要删除过程在重新创建</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER PROCEDURE sp_name[characteristic..]</span><br><span class="line">COMMENT &apos;string &apos;</span><br><span class="line">| &#123;CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA&#125; | SQL SECURITY &#123;DEFINER | INVOKER&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="MySQL中的查询"><a href="#MySQL中的查询" class="headerlink" title="MySQL中的查询"></a>MySQL中的查询</h3><ol>
+<li>查询记录的表达式中，每一个表达式表示想要的一列，必须要有至少一个。多个列之间以逗号分开。</li>
+<li>星号表示所有列。tbl_name.*可以表示tbl_name的所有列。</li>
+<li>查询的结果表使用[AS]alias_name为其赋予别名。别名可用于GROUP BY,ORDER BY或HAVING字句。</li>
+<li>查询语句的顺序会影响查询结果表的顺序，字段别名也会影响结果表的字段别名。为了SQL语句的可读性需要使用AS语句。</li>
+<li>查询语句中的WHERE表达式中，可以使用MySQL支持的函数或运算符且可以使用AND与OR来连接多个表达式</li>
+<li>查询结果可以使用GROUP BY{col_name | position} [ASC|DESC],..分组。查询user2表中pid的分类SELECT pid FROM user2 GROUP BY pid,分组可以使用HAVING做过滤，只显示符合HAVING后边条件的分组;</li>
+<li>分组条件HAVING，HAVING可以只对某一部分记录做分组，在使用HAVING时参数必须要在select_expr中出现，HAVING也可以使用聚合参数做参数</li>
+<li>ORDER BY对查询结果排序,ORDER BY默认是升序，DESC为降序。例子：查询首先根据age升序排列，如果age相同的则根据id降序排列：SELECT * FROM user2 ORDER BY age,id DESC;</li>
+<li>限制查询结果返回的数量LIMIT。LIMIT的参数只有一个的话默认是从第1个记录开始返回参数量，如果有两个参数的话会从第一个参数开始返回第二个参数值得记录，需要注意的是，记录的索引是从0开始的</li>
+</ol>
+<h3 id="MySQL中的关键字"><a href="#MySQL中的关键字" class="headerlink" title="MySQL中的关键字"></a>MySQL中的关键字</h3><p>UNSIGNED  以无符号位形式存储（不可以有负数）</p>
+<p>NULL  字段值可以为空（可以插入空数据）</p>
+<p>NOT NULL  非空约束，字段值禁止为空（不可以插入空数据）</p>
+<p>AUTO_INCREMENT  自动编号，且必须与主键组合使用。默认情况下，起始值为1，每次的增量为1，使用AUTO关键字数据类型必须是整型或者浮点型，且浮点型小数点后必须为0位，当使用了这个关键字之后就不允许自己赋值了   （ID自增长）</p>
+<p>PRIMARY KEY   主键约束，每张表只能存在一个主键约束，主键保证记录的唯一性，主键自动为NOT NULL。主键可以不与自增长一起使用，且使用这个关键字的字段不允许重复，主键约束列会自动创建索引</p>
+<p>UNIQUE KEY  唯一约束，唯一约束可以保证记录的唯一性，唯一约束的字段可以为空值，一张表可以存在多个唯一约束  </p>
+<p>DEFAULT(value)  默认约束，当插入记录时，如果没有为字段赋值，则会赋予默认值。可以与ENUM类型配合使用</p>
+<p>FOREIGN KEY  外键约束，保持数据一致性、完整性，实现一对一或一对多关系，创建外键约束时父表与字表必须使用InnoDB存储引擎，而且禁止使用临时表。有外键约束列的表称为子表，而字表所参照的表称为父表。外键列和参照列必须具有相似的数据类型，其中数字类型的长度及是否有符号位必须相同，而字符类型的长度可以不同。外键列和参照列必须创建索引，如果参照列没有索引的话，MySQL将自动创建索引，外键列则不会自动创建索引。在创建表时使用外键约束的例子：FOREIGN KEY (字表列) REFERENCES provinces(父表列)</p>
+<p>外键约束的参照操作关键字：  CASCADE：从父表删除或更新时自动删除或更新字表   SET NULL：从父表删除或更新行时，设置字表中的外键列为NULL，该选项必须保证子表外键列没有指定NOT NULL。  RESTRICT:拒绝对父表的删除或更新操作  NO ACTION：标准SQL关键字，在MySQL中与RESTRICT作用相同</p>
+<p>DELIMITER  修改定界符关键字</p>
+<h3 id="MySQL中的数据类型"><a href="#MySQL中的数据类型" class="headerlink" title="MySQL中的数据类型"></a>MySQL中的数据类型</h3><p><strong>数据类型是指存储过程中参数、表达式和局部变量的数据特征，它决定了数据的存储格式，代表了不同的信息类型</strong></p>
+<ul>
+<li><p>MySQL中的整型按照存储范围以及字节大小从小到大有TINYINT、SMALLINT()、MEDIUMINT、INT、BIGINT几种</p>
+</li>
+<li><p>MySQL中的浮点型存储范围从小到大是FLOAT[(M,D)]、DOUBLE[(M,D)]两种，其中M代表数字总位数，D代表小数点后面的位数，如果M和D省略根据硬件允许的限制来保存。单精度浮点数精确到大约7位小数位。</p>
+</li>
+<li><p>MySQL中的日期类型按照字节大小有YEAR、TIME、DATE、TIMESTAMP、DATETIME几种，在实际开发中日期类型使用较少，更多的是使用数字来存储日期</p>
+</li>
+<li><p>MySQL中的字符型有定长类型、变长类型、枚举值、集合几种，定长类型是指字符的字节长度是不变的，而变长类型就是字节长度可变。枚举值是指从value中选择一个，集合最多有64个成员，集合会从成员中任意的排列组合。定长类型有CHAR(字节长度)类型，变长类型有VARCHAR(字节长度)、TINYTEXXT、TEXT、MEDIUMTEXT、LONGTEXT几种。枚举值有ENUM(‘value1’,’value2’,…)。集合有SET(‘value1’,’value2’,…)</p>
+</li>
+</ul>
+<h3 id="MySQL中的约束"><a href="#MySQL中的约束" class="headerlink" title="MySQL中的约束"></a>MySQL中的约束</h3><p>约束是保证数据的完整性和一致性，约束分为表级约束和列级约束，区分约束级别是根据这个约束影响的范围来区分的，列级约束既可以在定义时声明，也可以定义后声明，而表级约束只能在列定义后声明。约束针对两个或两个以上的约束就称为表级约束，反之就是列级约束。约束类型包括非空约束、主键约束、唯一约束、默认约束、外键约束</p>
+<p>在实际开发过程中，因为各种限制问题，很少使用MySQL的外键约束，更多的是在代码中完成逻辑上的外键约束。并且在实际开发过程中列级约束用的比较多</p>
+<h3 id="MySQL高级查询"><a href="#MySQL高级查询" class="headerlink" title="MySQL高级查询"></a>MySQL高级查询</h3><ul>
+<li>子查询</li>
+</ul>
+<p>子查询是指出现在SQL语句中得SELECT语句，子查询嵌套在查询内部，且必须始终出现在圆括号内。子查询的外层查询可以是任意类型的SQL语句。子查询可以返回标量、一行、一列或子查询。子查询如果使用在FROM后边则必须要有别名</p>
+<p>由比较运算符引发的子查询在返回多个结果时可以在运算符后边使用ANY、SOME、ALL来修饰，使用IN的子查询等价于使用=ANY使用！=ALL的子查询等价于使用NOT IN的子查询。使用EXISTS的查询，如果子查询返回任何行EXISTS将返回ture，负责为false</p>
+<ul>
+<li>多表连接</li>
+</ul>
+<p>MySQL多表连接JOIN可以应用与SELECT语句、多表更新、多表删除等操作。连接分为INNER JOIN、LEFT[OUTER] JOIN与RIGHT[OUTER] JOIN。连接语句可以使用ON设定连接条件，使用WHERE进行结果集记录的过滤。</p>
+<p>内连接只显示符合连接条件的记录，而左外连接会显示坐表的全部记录及右表符合连接条件的记录，而不存在的字段会以NULL值显示，右外连接则会显示右表的全部记录及左表符合条件的记录</p>
+<p>外键把数据分为多个表存储，连接就是把多个表连接起来，连接就是对外键的逆向操作</p>
+<p>连接还可以用来连接一张表，也就是说同一个数据表对其自身连接，自连接通常用来查询无限极分类表</p>
+<p>关于连接 A LEFT JOIN B join_condition</p>
+<p>数据表B的结果集依赖数据表A，也就是所数据表A中有的数据才会在数据表B中显示。</p>
+<p>数据表A的结果集根据左连接条件依赖所有数据表</p>
+<p>左外连接条件决定如何检索数据表B(在没有WHERE的条件下)</p>
+<p>如果数据表A的某条记录符合WHERE条件，但是数据表B不存在符合条件的记录，将生成一个所有列为空的额外的B行。</p>
+<p>如果使用内连接查找的记录在连接数据表中不存在，并且WHERE子句中尝试col_name IS NULL时，如果col_name被定义为NOT NULL，MySQL将在找到符合连接条件的记录后将停止搜索更多的行。</p>
+<h3 id="MySQL中的函数"><a href="#MySQL中的函数" class="headerlink" title="MySQL中的函数"></a>MySQL中的函数</h3><p><strong>MySQL中函数分为字符函数、数值运算符与函数、比较运算符与函数、日期时间函数、信息函数、聚合函数及加密函数</strong></p>
+<h4 id="系统函数"><a href="#系统函数" class="headerlink" title="系统函数"></a>系统函数</h4><ol>
+<li><p>字符函数</p>
+<p> CONCAT()   字符连接，可以用来连接一张表的两个字段</p>
+<p> CONCAT_WS()  以指定分隔符进行字符连接</p>
+<p> FORMAT()   将数字以千分位格式化，可以指定小数点后位数，结果会四舍五入</p>
+<p> LOWER()  转换为小写字母</p>
+<p> UPPED()  转换为大写字母</p>
+<p> LEFT()  获取左侧字符，参数为字符串以及需要取得位数</p>
+<p> RIGHT()  获取右侧字符</p>
+<p> LENGTH()  获取字符串长度</p>
+<p> LTRIM()   删除前导空格</p>
+<p> RTRIM()        删除后续空格</p>
+<p> TRIM()  删除前导和后续空格，不能删除中间的空格，可以用REPLACE()函数替换。TRIM()函数可以用LEADING | TRAILING | BOTH指定要删除的字符</p>
+<p> SUBSTRING()  字符串截取，可以指定从第几位截取并截取几位，如果只有一个参数，则会从给定参数开始，截取到最后一位。从第几位截取可以是负数，负数会从尾开始数第几个。</p>
+<p> [NOT] LIKE   模式匹配   参数中%为通配符，且如果需要查找匹配%的，需要使用ESCAPE关键字。  例子：SELECT * FROM test WHERE name LIKE ‘%1%%’ ESCAPE ‘1’  查找包含%的字符串，需要注意的是%代表任意个字符，_代表任一个字符。</p>
+<p> REPLACE()  字符串替换</p>
+</li>
+<li><p>数值运算符与函数</p>
+<p> CEIL()  进一取整，向上取整</p>
+<p> DIV  整数除法，得到的结果为舍弃小数点后边的位数的整数</p>
+<p> FLOOR()    舍一取整，向下取整</p>
+<p> MOD  取余数，也可以用%代替</p>
+<p> POWER()  幂运算</p>
+<p> ROUND()  四舍五入取整</p>
+<p> TRUNGATE()  数字截取，两个参数，一个需要截取的数字，一个截取几位，结果为把数字从后边开始去掉X位。</p>
+</li>
+<li><p>比较运算符与函数</p>
+<p> [NOT] BETWEEN…AND…   [不]在范围内</p>
+<p> [NOT] IN()   [不]在列出值范围内，与BETWEEN的区别是这个只判断是否在列出值得范围内</p>
+<p> IS [NOT] NULL   [不]为空</p>
+</li>
+<li><p>日期时间函数</p>
+<p> NOW()    当前日期与时间</p>
+<p> CURDATE()    当前日期</p>
+<p> CURDTIME()   当前时间</p>
+<p> DATE_ADD()   日期变化，给定一个日期并让它加减,使用INTERVAL关键字并在后边添加加减的参数来完成日期的变化</p>
+<p> DATEDIFF()     两个日期之间的差值，以天为单位</p>
+<p> DATE_FORMAT()  日期格式化,结果会自动补0，例子：DATE_FORMAT(‘2016-6-12’，’%m/%d/%Y’).将日期格式化为06/12/16</p>
+</li>
+</ol>
+<ol start="5">
+<li><p>信息函数</p>
+<p> CONNECTION_ID()    连接ID,返回当前连接的线程ID</p>
+<p> DATEBASE()    当前数据库</p>
+<p> LAST_INSERT_ID()    最后插入记录的ID号，在多条记录同时插入的情况下，只会返回第一次插入的记录ID而不会返回后边的</p>
+<p> USER()    当前用户</p>
+<p> VERSION()    版本信息</p>
+</li>
+</ol>
+<ol start="6">
+<li><p>聚合函数，聚合函数只返回一个返回值</p>
+<p> AVG()    平均值</p>
+<p> COUNT()    计数</p>
+<p> MAX()    最大值</p>
+<p> MIN()    最小值</p>
+<p> SUM()    求和</p>
+</li>
+</ol>
+<ol start="7">
+<li><p>加密函数</p>
+<p> MD5()    信息摘要算法，加密算法</p>
+<p> PASSWORD()    密码算法，主要用来修改数据库的用户密码</p>
+</li>
+</ol>
+<h4 id="MySQL中的自定义函数"><a href="#MySQL中的自定义函数" class="headerlink" title="MySQL中的自定义函数"></a>MySQL中的自定义函数</h4><ul>
+<li><p>user_deifned function 是一种对MySQL扩展的途径，其用法与内置函数相同，自定义函数的必要条件：参数与返回值。函数可以返回任意类型的值，也可以接收这些类型的参数，函数的参数与返回值没有关系，在MySQL中函数的参数不能超过1024个</p>
+</li>
+<li><p>MySQL中在创建具有复合结构(多个SQL语句)的自定义函数时，需要使用DELIMINTR关键字吧原定界符;修改为其他的，且函数体需要用BEGIN与END包括。</p>
+</li>
+<li><p>创建自定义函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">创建复合结构的自定义函数例子：</span><br><span class="line"></span><br><span class="line">把定界符修改为//</span><br><span class="line">DELIMITER //</span><br><span class="line"></span><br><span class="line">创建函数</span><br><span class="line">CREATE FUNCTION adduser(username VARCHAR(20))</span><br><span class="line">RETURNS INT UNSIGNED</span><br><span class="line">BEGIN</span><br><span class="line">INSERT user2(username) VALUES(username);</span><br><span class="line">RETURN LAST_INSERT_ID();</span><br><span class="line">END</span><br><span class="line">//</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="MySQL的存储过程"><a href="#MySQL的存储过程" class="headerlink" title="MySQL的存储过程"></a>MySQL的存储过程</h3><ul>
+<li><p>存储过程是SQL语句和控制语句的预编译集合，以一个名称存储并作为一个单元处理。存储过程存储在数据库内，可以由应用程序调用。而且允许用户声明变量及进行流程控制。存储过程可以接收输入类型的参数及输出类型的参数，且可以存在多个返回值。存储过程的效率相比于SQL语句要高，这是因为存储过程只会在第一次执行的时候编译，第二次以后都是执行编译完成的文件，而SQL语句则是每一次都会编译</p>
+</li>
+<li><p>存储过程相的优点，存储过程增强了SQL语句的功能和灵活性，且在第一次执行完毕之后有较快的执行速度，减少了网络流量</p>
+</li>
+</ul>
+<h3 id="存储过程与自定义函数的区别"><a href="#存储过程与自定义函数的区别" class="headerlink" title="存储过程与自定义函数的区别"></a>存储过程与自定义函数的区别</h3><ol>
+<li><p>存储过程可以实现的功能要复杂一些，而函数的针对性更强。在开发中经常使用存储过程来对数据表进行操作</p>
+</li>
+<li><p>存储过程可以返回多个值，而函数只能有一个返回值</p>
+</li>
+<li><p>存储过程一般是独立来执行，而函数一般作为其他SQL语句的组成部分来出现</p>
+</li>
+</ol>
+<h3 id="MySQL中的存储引擎"><a href="#MySQL中的存储引擎" class="headerlink" title="MySQL中的存储引擎"></a>MySQL中的存储引擎</h3><ul>
+<li>MySQL将数据以不同的技术存储在内存中，这种技术就称为存储引擎.每一种存储引擎使用不用的存储机制、索引技巧、锁定水平，最终提供广泛且不同的功能，存储引擎也可以称为表类型，存储引擎就是一种存储数据、查询数据的技术。MySQL中支持MyISAM、InnoDB、Memory、CSV、Archive这几种存储引擎</li>
+</ul>
+<h4 id="各个存储引擎的特点"><a href="#各个存储引擎的特点" class="headerlink" title="各个存储引擎的特点"></a>各个存储引擎的特点</h4><ul>
+<li><p>MyISAM引擎的存储限制为256TB，不支持事务及外键，支持索引及数据压缩，对于并发控制的策略为表锁。</p>
+</li>
+<li><p>InnoDB引擎的存储限制为64TB，支持事务、索引及外键，不支持数据压缩，对于并发控制的策略为行锁。</p>
+</li>
+<li><p>Memory引擎的存储空间为主机的内存空间，支持索引，不支持事务、外键及数据压缩，对于并发控制的策略为表锁。</p>
+</li>
+<li><p>Archive引擎没有存储限制，支持数据压缩，不支持事务、索引及外键，对于并发控制的策略为行锁。</p>
+</li>
+<li><p>CSV引擎会在数据库的子目录下为每张表创建一个以.CSV结尾的文件，每条记录在文件中占一行，这个引擎是不支持索引的</p>
+</li>
+<li><p>BlackHole引擎会使写入的数据消失，一般用于做数据复制中的中继。</p>
+</li>
+</ul>
+<p><strong>在上述引擎中，使用最多的位MyISAM引擎及InnoDB引擎，其中MyISAM适用于事务处理不多的情况下，而InnoDB适用于事务处理较多且需要外键约束的情况下</strong></p>
+<h4 id="修改存储引擎的方法"><a href="#修改存储引擎的方法" class="headerlink" title="修改存储引擎的方法"></a>修改存储引擎的方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1. 通过修改MySQL配置文件my.ini中的下列选项实现修改默认引擎</span><br><span class="line">- default-storage-engine = engine_name</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">2. 在创建数据表时指定数据表的引擎</span><br><span class="line">CREATE TABLE table_name(</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">)ENGINE = engine_name;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3. 修改数据表命令实现</span><br><span class="line">ALTER TABLE table_name ENGINE [=] engine_name;</span><br></pre></td></tr></table></figure>
+<h3 id="MySQL中的知识点"><a href="#MySQL中的知识点" class="headerlink" title="MySQL中的知识点"></a>MySQL中的知识点</h3><ul>
+<li><p>并发控制</p>
+<p>  并发控制就是当多个连接对记录进行修改时保持数据的一致性和完整性并发控制分为并发读及并发写，它们分别用锁机制的共享锁(读锁)与排他锁(写锁)解决。共享锁是互不阻塞的，在同一时间段内，多个用户可以读取同一个资源，读取过程中数据不会发生任何变化。排它锁保证了在任何时候只能有一个用户写入资源，当进行写锁时会阻塞其他的读锁或写锁。锁的力度也称为锁的颗粒，指的是锁定时的单位。加锁会增加系统的开销，需要在数据安全的前提下尽量减少加锁的开销。MySQL的锁策略有表锁及行锁，其中表锁是一种开销最小的锁策略，而行锁是开销最大的锁策略，也是支持最大并发操作的一种策略。表锁开销小是因为一张表只有一个表锁，而一张表的每行都可以有一个行锁</p>
+</li>
+<li><p>事务处理</p>
+<p>  事务处理用于保证数据库的完整性，事务是数据库区别于文件系统的重要特征之一，事务就是把一件事情的几个步骤合并为一个事务，不管哪个步骤出现了问题，都能把其中的数据恢复到开始事务之前的状态。事务必须满足四个特性：原子性(Atomicity)、一致性(Consistency)、隔离性(Isolation)、持久性(Durability)</p>
+</li>
+<li><p>外键</p>
+<p>  外键是保证数据一致性的策略</p>
+</li>
+<li><p>索引</p>
+<p>  索引是对数据表中一列或多列的值进行排序的一种结构，使用索引可以快速访问数据库中的特定信息，索引是进行数据快速定位的一种方法。索引分为普通索引、唯一索引、全文索引、btree索引、hash索引等等..</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/29/IDEA常用操作/" rel="next" title="IDEA常用操作">
+                <i class="fa fa-chevron-left"></i> IDEA常用操作
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/02/命令行常用命令/" rel="prev" title="命令行常用命令">
+                命令行常用命令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">冰断秋</p>
+              <p class="site-description motion-element" itemprop="description">希望你每一天都过得对得起自己</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+		
+      </section>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=35288859&auto=1&height=66"></iframe>
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySql数据库"><span class="nav-number">1.</span> <span class="nav-text">MySql数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MySQL目录结构"><span class="nav-number">1.1.</span> <span class="nav-text">MySQL目录结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更改MySQL的配置文件"><span class="nav-number">1.2.</span> <span class="nav-text">更改MySQL的配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MySQL常用命令行命令"><span class="nav-number">1.3.</span> <span class="nav-text">MySQL常用命令行命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MySQL系统命令"><span class="nav-number">1.4.</span> <span class="nav-text">MySQL系统命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MySQL语法规范"><span class="nav-number">1.5.</span> <span class="nav-text">MySQL语法规范</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL语句事例"><span class="nav-number">2.</span> <span class="nav-text">SQL语句事例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#与创建数据库有关的SQL语句"><span class="nav-number">2.1.</span> <span class="nav-text">与创建数据库有关的SQL语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与数据表有关的SQL语句"><span class="nav-number">2.2.</span> <span class="nav-text">与数据表有关的SQL语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多表连接相关的SQL语句"><span class="nav-number">2.3.</span> <span class="nav-text">多表连接相关的SQL语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与约束相关的SQL语句"><span class="nav-number">2.4.</span> <span class="nav-text">与约束相关的SQL语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与数据表中记录相关的SQL语句"><span class="nav-number">2.5.</span> <span class="nav-text">与数据表中记录相关的SQL语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与自定义函数相关的SQL语句"><span class="nav-number">2.6.</span> <span class="nav-text">与自定义函数相关的SQL语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与存储过程相关的SQL语句"><span class="nav-number">2.7.</span> <span class="nav-text">与存储过程相关的SQL语句</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL中的查询"><span class="nav-number">3.</span> <span class="nav-text">MySQL中的查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL中的关键字"><span class="nav-number">4.</span> <span class="nav-text">MySQL中的关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL中的数据类型"><span class="nav-number">5.</span> <span class="nav-text">MySQL中的数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL中的约束"><span class="nav-number">6.</span> <span class="nav-text">MySQL中的约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL高级查询"><span class="nav-number">7.</span> <span class="nav-text">MySQL高级查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL中的函数"><span class="nav-number">8.</span> <span class="nav-text">MySQL中的函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#系统函数"><span class="nav-number">8.1.</span> <span class="nav-text">系统函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MySQL中的自定义函数"><span class="nav-number">8.2.</span> <span class="nav-text">MySQL中的自定义函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL的存储过程"><span class="nav-number">9.</span> <span class="nav-text">MySQL的存储过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储过程与自定义函数的区别"><span class="nav-number">10.</span> <span class="nav-text">存储过程与自定义函数的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL中的存储引擎"><span class="nav-number">11.</span> <span class="nav-text">MySQL中的存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#各个存储引擎的特点"><span class="nav-number">11.1.</span> <span class="nav-text">各个存储引擎的特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改存储引擎的方法"><span class="nav-number">11.2.</span> <span class="nav-text">修改存储引擎的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL中的知识点"><span class="nav-number">12.</span> <span class="nav-text">MySQL中的知识点</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冰断秋</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
