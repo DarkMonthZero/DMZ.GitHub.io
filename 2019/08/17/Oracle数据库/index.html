@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="但行己路，莫问他人">
 <meta property="og:description" content="Oracle数据库是甲骨文公司的一款关系数据库管理系统，本篇博客记录Oracle数据库的相关知识">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-18T09:45:25.751Z">
+<meta property="og:updated_time" content="2019-09-19T03:29:06.126Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle数据库">
 <meta name="twitter:description" content="Oracle数据库是甲骨文公司的一款关系数据库管理系统，本篇博客记录Oracle数据库的相关知识">
@@ -521,14 +521,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">CREATE OR REPLACE PROCEDURE IMG_INSERT3 (TID VARCHAR2,TFILENAME VARCHAR2) AS</span><br><span class="line">F_LOB BFILE;</span><br><span class="line">B_LOB BLOB;</span><br><span class="line">BEGIN</span><br><span class="line">// 先插入空对象在修改为指定图片</span><br><span class="line">iNSERT INTO fu_file(id,filename,files)</span><br><span class="line">VALUES (TID,TFILENAME,EMPTY_BLOB ()) RETURN files INTO B_LOB;</span><br><span class="line">// 打开文件并插入操作</span><br><span class="line">F_LOB:= BFILENAME (&apos;IMAGES&apos;, TFILENAME);</span><br><span class="line">DBMS_LOB.FILEOPEN(F_LOB, DBMS_LOB.FILE_READONLY);</span><br><span class="line">DBMS_LOB.LOADFROMFILE (B_LOB, F_LOB,DBMS_LOB.GETLENGTH (F_LOB));</span><br><span class="line">DBMS_LOB.FILECLOSE (F_LOB);</span><br><span class="line">COMMIT;</span><br><span class="line">END;</span><br><span class="line">/</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>**其中image为目录名，IMG_INSERT3为过程名</p>
+<p><strong>其中image为目录名，IMG_INSERT3为过程名</strong></p>
 <ol start="3">
 <li>执行存储过程用来存储图片<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec IMG_INSERT3(1,&apos;test.jpg&apos;)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h4 id="注意事项及遇到的坑"><a href="#注意事项及遇到的坑" class="headerlink" title="注意事项及遇到的坑"></a>注意事项及遇到的坑</h4><ol>
-<li>在执行储存过程之前必须要保证数据库目录必须存在且里面要有对应的图片，负责会报对不存在的目录或文件进行打开操作。</li>
-<li>在创建存储过程时也要保证 F_LOB:= BFILENAME (‘IMAGE’, TFILENAME);中的目录名必须大写，负责也会报对不存在的目录或文件进行打开操作。</li>
+<li><strong>在执行储存过程之前必须要保证数据库目录必须存在且里面要有对应的图片，负责会报对不存在的目录或文件进行打开操作。</strong></li>
+<li><strong>在创建存储过程时也要保证 F_LOB:= BFILENAME (‘IMAGE’, TFILENAME);中的目录名必须大写，负责也会报对不存在的目录或文件进行打开操作。</strong></li>
 </ol>
 
       
@@ -643,7 +643,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -654,7 +654,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
