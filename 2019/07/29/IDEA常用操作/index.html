@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="但行己路，莫问他人">
 <meta property="og:description" content="本篇博客记录在学习过程中intellij中的常用操作">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-02T01:14:04.180Z">
+<meta property="og:updated_time" content="2019-10-28T09:04:50.320Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IDEA常用操作">
 <meta name="twitter:description" content="本篇博客记录在学习过程中intellij中的常用操作">
@@ -358,6 +358,10 @@
 <li>移除jar包：file -&gt; projectStrucuure -&gt; 选择不想使用的jar包，点击减号就移除了。</li>
 </ol>
 <h1 id="修改编码"><a href="#修改编码" class="headerlink" title="修改编码"></a>修改编码</h1><p>File -&gt; Settings-&gt;File Encodings -&gt; Defaule encoding for properties files</p>
+<h1 id="IDEA整合Tomcat"><a href="#IDEA整合Tomcat" class="headerlink" title="IDEA整合Tomcat"></a>IDEA整合Tomcat</h1><p>run -&gt; Edit configuratious -&gt; 点击+号新增配置，选择本地Tomcat服务器，选择Tomcat服务器根目录之后，选择deployment标签，点击+号选择人工选择，点击修改，修改输出目录到Tomcat下的webapps下。其中，deployment标签下的application context为项目的虚拟路径。</p>
+<h1 id="Tomcat热部署"><a href="#Tomcat热部署" class="headerlink" title="Tomcat热部署"></a>Tomcat热部署</h1><p>run -&gt; Edit configuratious -&gt; 将update action选项与frame deactivation选项设置为更新类与资源</p>
+<h1 id="清除项目缓存"><a href="#清除项目缓存" class="headerlink" title="清除项目缓存"></a>清除项目缓存</h1><p>点击File -&gt; Invalidate caches</p>
+<h1 id="格式化代码"><a href="#格式化代码" class="headerlink" title="格式化代码"></a>格式化代码</h1><p>【Ctrl】+【Alt】+【L】</p>
 
       
     </div>
@@ -471,7 +475,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -527,7 +531,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#添加jar包及移除jar包"><span class="nav-number">1.</span> <span class="nav-text">添加jar包及移除jar包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改编码"><span class="nav-number">2.</span> <span class="nav-text">修改编码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#添加jar包及移除jar包"><span class="nav-number">1.</span> <span class="nav-text">添加jar包及移除jar包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改编码"><span class="nav-number">2.</span> <span class="nav-text">修改编码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IDEA整合Tomcat"><span class="nav-number">3.</span> <span class="nav-text">IDEA整合Tomcat</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tomcat热部署"><span class="nav-number">4.</span> <span class="nav-text">Tomcat热部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#清除项目缓存"><span class="nav-number">5.</span> <span class="nav-text">清除项目缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#格式化代码"><span class="nav-number">6.</span> <span class="nav-text">格式化代码</span></a></li></ol></div>
             
 
           </div>
@@ -547,7 +551,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

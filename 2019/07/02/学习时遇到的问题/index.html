@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="但行己路，莫问他人">
 <meta property="og:description" content="本篇博客记录在学习与开发过程中遇到的问题以及知识点">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-30T06:46:29.271Z">
+<meta property="og:updated_time" content="2019-10-30T14:47:24.765Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="学习时遇到的问题">
 <meta name="twitter:description" content="本篇博客记录在学习与开发过程中遇到的问题以及知识点">
@@ -449,7 +449,17 @@
 <p>不输出字符串的空格与换行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">String str = new String(ch,start,length);</span><br><span class="line">if (!(&quot;&quot;.equals(str.trim())))&#123;</span><br><span class="line">    System.out.println(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在使用多线程实现基于UDP的多客户端与服务端连接时，发现有时候客户端可能会收不到服务端的回应？这是不是因为UDP协议是无连接、不可靠的原因？</p>
 <ul>
-<li>在学完JDBC与数据库之后完成Socket的综合练习</li>
+<li><p>在学完JDBC与数据库之后完成Socket的综合练习</p>
+</li>
+<li><p>在使用jsp：useBean动作时，服务器报Unable to compile class for JSP错误<br>解决方法：不使用jsp动作，使用java代码来执行</p>
+</li>
+<li><p>使用jsp与cookie实现浏览记录时发现只会显示一条浏览记录，原因是每每次进入页面都创建了cookie并保存，解决办法为先取出来cookie在保存cookie</p>
+</li>
+<li><p>在使用过滤器时发现不能找到对应的包，原因是没有对应的jar包servlet-api.jar，找到对应的jar包复制到项目里然后ADD lib即可</p>
+</li>
+</ul>
+<h3 id="javaScript"><a href="#javaScript" class="headerlink" title="javaScript"></a>javaScript</h3><ul>
+<li>checkbox获取选中状态要根据ID获取指定的元素使用checked才能获取选中状态</li>
 </ul>
 <h3 id="计算机系统"><a href="#计算机系统" class="headerlink" title="计算机系统"></a>计算机系统</h3><ul>
 <li>文件的储存为什么是二进制</li>
@@ -478,6 +488,12 @@
 <li><p>搭建VPN服务器</p>
 </li>
 <li><p>eshll是什么</p>
+</li>
+</ul>
+<h3 id="WEB开发"><a href="#WEB开发" class="headerlink" title="WEB开发"></a>WEB开发</h3><ul>
+<li><p>Tomcat发布时图片没有发布导致访问不到<br>解决办法为：在Tomcat服务器目录下删除项目文件夹然后重新发布</p>
+</li>
+<li><p>Tomcat启动时报类找不到异常，但是用main函数测试结果正常<br>解决方案是：进入idea project structure -&gt; artifacts  -&gt; 创建一个文件夹lib并吧缺少的jar包引入到lib文件夹里</p>
 </li>
 </ul>
 
@@ -593,7 +609,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -649,7 +665,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#java的问题"><span class="nav-number">1.</span> <span class="nav-text">java的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机系统"><span class="nav-number">2.</span> <span class="nav-text">计算机系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">3.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML与CSS"><span class="nav-number">4.</span> <span class="nav-text">HTML与CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他问题"><span class="nav-number">5.</span> <span class="nav-text">其他问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#java的问题"><span class="nav-number">1.</span> <span class="nav-text">java的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javaScript"><span class="nav-number">2.</span> <span class="nav-text">javaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算机系统"><span class="nav-number">3.</span> <span class="nav-text">计算机系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库"><span class="nav-number">4.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML与CSS"><span class="nav-number">5.</span> <span class="nav-text">HTML与CSS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他问题"><span class="nav-number">6.</span> <span class="nav-text">其他问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WEB开发"><span class="nav-number">7.</span> <span class="nav-text">WEB开发</span></a></li></ol></div>
             
 
           </div>
@@ -669,7 +685,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
